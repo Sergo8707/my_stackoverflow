@@ -2,6 +2,7 @@ RSpec.describe QuestionsController, type: :controller do
   let(:question) { create(:question) }
 
   describe 'DELETE #destroy' do
+    sign_in_user
     before { question }
 
     it 'deletes question' do
