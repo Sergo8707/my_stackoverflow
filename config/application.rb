@@ -22,5 +22,6 @@ module Stackoverflow
                        controller_spec: true
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
     end
+    config.i18n.default_locale = :ru
   end
 end
