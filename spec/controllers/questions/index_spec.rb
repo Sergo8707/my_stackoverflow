@@ -2,6 +2,7 @@ RSpec.describe QuestionsController, type: :controller do
   let(:question) { create(:question) }
   describe 'GET #index' do
     let(:questions) { create_list(:question, 2) }
+
     before { get :index }
 
     it 'populates an array of questions' do

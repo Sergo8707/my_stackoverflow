@@ -8,8 +8,8 @@ feature 'User sign out', %q{
 
   scenario 'Authenticated user try to sign out' do
     sign_in(user)
-    click_on 'Logout'
-    expect(page).to have_content 'Signed out successfully.'
+    click_on 'Выход'
+    expect(page).to have_content 'Вход Регистрация Выход из системы выполнен. Новый вопрос'
     expect(current_path).to eq root_path
   end
 end

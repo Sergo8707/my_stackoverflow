@@ -23,12 +23,16 @@ RSpec.describe QuestionsController, type: :controller do
     end
 
     context 'invalid attributes' do
+      let(:expetced_data) { { title: 'premier Title', body: 'premier Body' } }
+      let(:question) { create(:question, title: expetced_data[:title], body: expetced_data[:body]) }
+
+
       before { patch :update, params: {id: question, question: {title: 'new title', body: nil}} }
 
       it 'does not change question attributes' do
         question.reload
-        expect(question.title).to eq 'MyString'
-        expect(question.body).to eq 'MyText'
+        expect(question.title).to eq expetced_data[:title]
+        expect(question.body).to eq expetced_data[:body]
       end
 
       it 're-renders edit view' do

@@ -1,0 +1,49 @@
+ru:
+  layouts:
+    header:
+      questions: 'Вопросы'
+      user: 'Пользователь'
+      signup: 'Регистрация'
+      login: 'Вход'
+      logout: 'Выход'
+      new_question: 'Новый вопрос'
+  questions:
+    new:
+      create_question: 'Задать вопрос'
+    show:
+      answers: 'Ответы'
+      destroy_question: 'Удалить вопрос'
+  answers:
+    answer:
+      destroy_answer: 'Удалить ответ'
+  shared:
+    answer_form:
+      asked: 'Ответить'
+      you_answer: 'Ваш ответ'
+
+  helpers:
+    label:
+      question:
+        title: 'Заголовок'
+        body: 'Ваш вопрос'
+        create: 'Создать'
+      user:
+        password: 'Пароль'
+        email: 'Email'
+        password_confirmation: 'Подтвердите пароль'
+
+  activerecord:
+    controllers:
+      questions:
+        create: 'Ваш вопрос успешно создан.'
+    errors:
+      models:
+        question:
+          attributes:
+            user:
+              required: 'не вошли в систему!'
+      messages:
+        blank: 'не может быть пустым!'
+        too_short: 'слишком короткий'
+        taken: 'уже существует'
+        record_invalid: 'Возникли ошибки: %{errors}'
