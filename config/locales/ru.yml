@@ -34,8 +34,17 @@ ru:
 
   activerecord:
     controllers:
+      answers:
+        create: 'Ваш ответ успешно создан.'
+        error_create: 'Ошибка при создании ответа'
+        delete: 'Ваш ответ был успешно удален.'
+        no_delete: 'Вы не можете удалить ответ!'
       questions:
+        update: 'Ваш вопрос успешно обновлен.'
+        no_update: 'Не удалось обновить вопрос.'
         create: 'Ваш вопрос успешно создан.'
+        delete: 'Ваш вопрос был успешно удален.'
+        no_delete: 'Вы не можете удалить вопрос!'
     errors:
       models:
         answer:

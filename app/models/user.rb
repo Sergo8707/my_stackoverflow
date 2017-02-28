@@ -3,6 +3,11 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :questions
-  has_many :answers
+  has_many :questions, dependent: :destroy
+  has_many :answers, dependent: :destroy
+
+
+  def author?(entity)
+    id == entity.user_id
+  end
 end

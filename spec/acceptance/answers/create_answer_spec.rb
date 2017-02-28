@@ -11,7 +11,7 @@ feature 'Create answer', %q{
     visit question_path(question)
     fill_in 'Body', with: 'My answer text'
     click_on 'Add new answer'
-    expect(page).to have_content 'Your answer successfully created.'
+    expect(page).to have_content 'Ваш ответ успешно создан.'
     expect(page).to have_content 'My answer text'
     expect(current_path).to eq question_path(question)
   end
@@ -21,13 +21,13 @@ feature 'Create answer', %q{
     visit question_path(question)
     fill_in 'Body', with: ''
     click_on 'Add new answer'
-    expect(page).to have_content "Not the correct answer data"
+    expect(page).to have_content 'Ошибка при создании ответа'
   end
 
   scenario 'Non-authenticated user try to creates qiestion' do
     visit question_path(question)
     fill_in 'Body', with: 'My answer text'
     click_on 'Add new answer'
-    expect(page).to have_content 'You need to sign in or sign up before continuing.'
+    expect(page).to have_content 'Вам необходимо войти в систему или зарегистрироваться.'
   end
 end
