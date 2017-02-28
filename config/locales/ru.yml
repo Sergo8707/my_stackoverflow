@@ -38,9 +38,14 @@ ru:
         create: 'Ваш вопрос успешно создан.'
     errors:
       models:
+        answer:
+          attributes:
+            user:
+              required: 'не вошли в систему!'
         question:
           attributes:
             user:
+              question: 'Вопрос'
               required: 'не вошли в систему!'
       messages:
         blank: 'не может быть пустым!'
