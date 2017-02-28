@@ -6,5 +6,6 @@ RSpec.describe Question do
 
   context 'association' do
     it { should have_many(:answers).dependent(:destroy) }
+    it { should belong_to(:user) }
   end
 end

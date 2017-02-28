@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 class AnswersController < ApplicationController
-  before_action :set_question, only: [:new, :create]
+  before_action :authenticate_user!, only: [:create, :destroy]
+  before_action :set_question, only: [:create]
 
   def new
     @answer = Answer.new
@@ -10,9 +11,22 @@ class AnswersController < ApplicationController
     @answer = @question.answers.new(answer_params)
     @answer.user = current_user
     if @answer.save
-      redirect_to @question, notice: 'Your answer successfully created.'
+      redirect_to @question, notice: t('activerecord.controllers.answers.create')
     else
-      flash[:alert] = "Not the correct answer data!"
+      flash[:alert] = t('activerecord.controllers.answers.error_create')
+      render 'questions/show'
+    end
+  end
+
+  def destroy
+    @answer = Answer.find(params[:id])
+    if current_user.author?(@answer)
+      @answer.destroy
+      flash[:notice] = t('activerecord.controllers.answers.delete')
+      redirect_to @answer.question
+    else
+      flash[:alert] = t('activerecord.controllers.answers.no_delete')
+      @question = @answer.question
       render 'questions/show'
     end
   end

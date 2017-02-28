@@ -33,8 +33,13 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    @question.destroy
-    redirect_to questions_path
+    if current_user.author?(@question)
+      @question.destroy
+      redirect_to questions_path, notice: t('activerecord.controllers.questions.delete')
+    else
+      flash[:alert] = t('activerecord.controllers.questions.no_delete')
+      render :show
+    end
   end
 
   private
