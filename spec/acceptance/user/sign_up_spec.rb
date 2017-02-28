@@ -6,12 +6,12 @@ feature 'User sign up', %q{
 
   scenario 'Guest user try to sign up' do
     visit root_path
-    click_link 'Sign up'
+    click_link 'Регистрация'
     fill_in 'Email', with: 'reguser@test.com'
-    fill_in 'Password', with: '123456'
-    fill_in 'Password confirmation', with: '123456'
-    click_button 'Sign up'
-    expect(page).to have_content 'Welcome! You have signed up successfully.'
+    fill_in 'Пароль', with: '123456'
+    fill_in 'Подтвердите пароль', with: '123456'
+    click_button 'Зарегистрироваться'
+    expect(page).to have_content 'Добро пожаловать! Вы успешно зарегистрировались.'
     expect(current_path).to eq root_path
   end
 end

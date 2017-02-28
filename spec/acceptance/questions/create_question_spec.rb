@@ -10,18 +10,18 @@ feature 'Create question', %q{
     sign_in(user)
 
     visit questions_path
-    click_on 'Ask question'
-    fill_in 'Title', with: 'Text question'
-    fill_in 'Body', with: 'text text'
-    click_on 'Create'
+    click_on 'Новый вопрос'
+    fill_in 'Заголовок', with: 'Text2 question'
+    fill_in 'Ваш вопрос', with: 'text2 text'
+    click_on 'Создать'
 
-    expect(page).to have_content 'Your question successfully created.'
+    expect(page).to have_content 'Ваш вопрос успешно создан.'
   end
 
   scenario 'Non-authenticated user ties to create question' do
     visit questions_path
-    click_on 'Ask question'
-    expect(page).to have_content 'You need to sign in or sign up before continuing.'
+    click_on 'Новый вопрос'
+    expect(page).to have_content 'Вам необходимо войти в систему или зарегистрироваться.'
   end
 
 end
