@@ -1,19 +1,26 @@
 RSpec.describe AnswersController, type: :controller do
-  let(:answer) { create(:answer) }
+  let(:question) { create(:question) }
+  let(:answer) { create(:answer, question: question) }
 
   describe 'POST #create' do
-    before { answer }
+    sign_in_user
     context 'with valid attributes' do
       it 'save new answer in the database' do
         expect do
           post :create, params: {answer: attributes_for(:answer),
-                                 question_id: answer.question_id}
+                                 question_id: question}
         end.to change(Answer, :count).by(1)
       end
 
+      it 'answer belongs to the user' do
+        post :create, params: {answer: attributes_for(:answer),
+                               question_id: question, }
+        expect(Answer.last.user).to eq @user
+      end
+
       it 'redirect to show view' do
-        post :create, params: {answer: attributes_for(:answer), question_id: answer.question_id}
-        expect(response).to redirect_to answer.question
+        post :create, params: {answer: attributes_for(:answer), question_id: question}
+        expect(response).to redirect_to question
       end
     end
 
@@ -21,13 +28,13 @@ RSpec.describe AnswersController, type: :controller do
       it 'dont save new answer' do
         expect do
           post :create, params: {answer: attributes_for(:invalid_answer),
-                                 question_id: answer.question_id}
+                                 question_id: question}
         end.to_not change(Answer, :count)
       end
 
       it 're-renders new view' do
-        post :create, params: {answer: attributes_for(:invalid_answer), question_id: answer.question_id}
-        expect(response).to render_template :new
+        post :create, params: {answer: attributes_for(:invalid_answer), question_id: question}
+        expect(response).to render_template 'questions/show'
       end
     end
   end

@@ -1,7 +1,8 @@
 RSpec.describe AnswersController, type: :controller do
-  let(:answer) { create(:answer) }
+  let(:question) { create(:question) }
+  let(:answer) { create(:answer, question: question) }
   describe 'GET #new' do
-    before { get :new, params: { question_id: answer.question_id } }
+    before { get :new, params: { question_id: question } }
 
     it 'Assigns a new Answer to @answer' do
       expect(assigns(:answer)).to be_a_new(Answer)
