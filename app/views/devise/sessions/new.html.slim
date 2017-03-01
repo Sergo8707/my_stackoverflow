@@ -1,17 +1,25 @@
-h3= t('.title')
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    br/
-    = f.email_field :email, autofocus: true, class: 'form-control'
-  .field
-    = f.label :password
-    br/
-    = f.password_field :password, autocomplete: "off", class: 'form-control'
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me, t('devise.shared.links.remember')
-  .actions
-    = f.submit t('.log_in'), class: 'btn btn-primary'
-= render "devise/shared/links"
+.row
+  .col-md-7
+    .panel.panel-info
+      .panel-heading.text-center
+        h2
+          strong= t('.title')
+    .jumbotron.well.text_input
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        = devise_error_messages!
+        .form-group
+          = f.label :email
+          = f.email_field :email, autofocus: true, class: 'form-control', placeholder: "Email"
+        .form-group
+          = f.label :password
+          = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: "Password"
+        - if devise_mapping.rememberable?
+          .field
+            = f.check_box :remember_me
+            = f.label :remember_me, t('devise.shared.links.remember')
+        .row
+          .container
+            .col-md-5
+              = render "devise/shared/links"
+            .col-md-4.text-right
+              button.btn.btn-success.fa.fa-sign-in type="submit"= t('.log_in')
