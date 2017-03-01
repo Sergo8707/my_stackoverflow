@@ -10,7 +10,7 @@ feature 'Delete answer', %q{
     sign_in(user)
     answer = create(:answer, user: user, question: question)
     visit question_path(question)
-    click_on 'Delete answer'
+    click_on 'Удалить ответ'
     expect(page).to have_content 'Ваш ответ был успешно удален.'
     expect(page).to_not have_content answer.body
   end

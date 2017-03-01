@@ -9,8 +9,8 @@ feature 'Create answer', %q{
   scenario 'Authenticated user create answer' do
     sign_in(user)
     visit question_path(question)
-    fill_in 'Body', with: 'My answer text'
-    click_on 'Add new answer'
+    fill_in 'Текст ответа', with: 'My answer text'
+    click_on 'Ответить'
     expect(page).to have_content 'Ваш ответ успешно создан.'
     expect(page).to have_content 'My answer text'
     expect(current_path).to eq question_path(question)
@@ -19,15 +19,15 @@ feature 'Create answer', %q{
   scenario 'Authenticated user create answer with invalid attributes' do
     sign_in(user)
     visit question_path(question)
-    fill_in 'Body', with: ''
-    click_on 'Add new answer'
+    fill_in 'Текст ответа', with: ''
+    click_on 'Ответить'
     expect(page).to have_content 'Ошибка при создании ответа'
   end
 
   scenario 'Non-authenticated user try to creates qiestion' do
     visit question_path(question)
-    fill_in 'Body', with: 'My answer text'
-    click_on 'Add new answer'
+    fill_in 'Текст ответа', with: 'My answer text'
+    click_on 'Ответить'
     expect(page).to have_content 'Вам необходимо войти в систему или зарегистрироваться.'
   end
 end

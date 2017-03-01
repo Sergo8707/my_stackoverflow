@@ -6,15 +6,16 @@ ru:
       signup: 'Регистрация'
       login: 'Вход'
       logout: 'Выход'
-      new_question: 'Новый вопрос'
+      new_question: ' Новый вопрос '
   questions:
     new:
-      create_question: 'Задать вопрос'
+      create_question: 'Создать вопрос'
     show:
       answers: 'Ответы'
       destroy_question: 'Удалить вопрос'
   answers:
     answer:
+      body_answer: 'Текст ответа'
       destroy_answer: 'Удалить ответ'
   shared:
     answer_form:

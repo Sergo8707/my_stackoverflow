@@ -1,5 +1,28 @@
-p= link_to t('layouts.header.new_question'), new_question_path
+= render 'questions/butn'
+ul.nav.nav-tabs.navbar-right
+  li.active
+    a data-toggle="tab" href="#home" Популярные вопросы
+  li
+    a data-toggle="tab" href="#menu1" Интересные
+  li
+    a data-toggle="tab" href="#menu2" Горячие
+  li
+    a data-toggle="tab" href="#menu2" Неделя
+  li
+    a data-toggle="tab" href="#menu2" Месяц
+.tab-content
+  #home.tab-pane.fade.in.active
+    h3 Топ вопросов
+    - @questions.each do |question|
+      ul.list-group-item
+        .table = link_to question.title, question
+  #menu1.tab-pane.fade
+    h3 Menu 1
+    p Some content in menu 1.
+  #menu2.tab-pane.fade
+    h3 Menu 2
+    p Some content in menu 2.
 
-- @questions.each do |question|
-  h3
-    = link_to question.title, question
+
+
+

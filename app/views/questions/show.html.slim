@@ -2,17 +2,17 @@ h2 = @question.title
 div = @question.body
 - if user_signed_in? && current_user.author?(@question)
   div
-    = link_to 'Delete question', @question, method: :delete
+    = link_to t('questions.show.destroy_question'), @question, method: :delete
 
 - if @question.answers.any?
-  div class="answers"
+  div
     - @question.answers.each do |answer|
       - if answer.persisted?
-        div class="answer"
+        div
           = answer.body
         - if user_signed_in? && current_user.author?(answer)
-          div class="delete"
-            = link_to 'Delete answer', answer, method: :delete
+          div
+            = link_to t('answers.answer.destroy_answer'), answer, method: :delete
 
 div class="form_add_answer"
   == render 'answers/form', question: @question

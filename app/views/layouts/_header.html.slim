@@ -1,0 +1,34 @@
+#wrap
+  nav.navbar.navbar-default role="navigation" style=("margin-bottom: 0;")
+    nav.container
+      .navbar-header
+        .animbrand
+          = link_to image_tag('so-icon.png', :alt => 'train img'), root_path
+      nav.collapse.navbar-collapse.navbar-bootsnipp-collapse
+        ul.nav.navbar-nav
+          li.nav.nav-pills
+            a href=""  Вопросы
+          li
+            a href=""  Работы
+          li
+            a href=""  Документация
+          li
+            a href=""  Теги
+          li
+            a href=""  Пользователи
+        .col-sm-3.col-md-3
+          form#search-form.navbar-form action="" method="GET" role="search"
+            .input-group
+              input.form-control name="q" placeholder="Search..." style=("padding:6px 6px;") type="text" /
+              .input-group-btn
+                button.btn.btn-default type="submit"
+                  i.glyphicon.glyphicon-search
+        ul.nav.navbar-nav
+          - if user_signed_in?
+            li
+              = link_to(t('layouts.header.logout'), destroy_user_session_path, :method => :delete)
+          - else
+            li
+              = link_to(t('layouts.header.login'), new_user_session_path)
+            li
+              = link_to(t('layouts.header.signup'), new_user_registration_path)
