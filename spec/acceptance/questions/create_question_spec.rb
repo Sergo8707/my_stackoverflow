@@ -1,8 +1,9 @@
-feature 'Create question', %q{
+# frozen_string_literal: true
+feature 'Create question', '
   In order to get answer from community
   As an authenticated user
   I want to be able to ask questions
-} do
+' do
 
   given(:user) { create(:user) }
 
@@ -23,5 +24,4 @@ feature 'Create question', %q{
     click_on 'Новый вопрос'
     expect(page).to have_content 'Вам необходимо войти в систему или зарегистрироваться.'
   end
-
 end

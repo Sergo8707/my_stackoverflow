@@ -1,8 +1,9 @@
-feature 'User sign up', %q{
+# frozen_string_literal: true
+feature 'User sign up', '
   In order to be able to ask questions
   As a guest
   I want to be able to register in the system
-} do
+' do
 
   scenario 'Guest user try to sign up' do
     visit root_path

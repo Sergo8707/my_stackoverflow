@@ -1,8 +1,9 @@
-feature 'User sign out', %q{
+# frozen_string_literal: true
+feature 'User sign out', '
   In order to complete the work of the session
   As a user
   I want to be able to go out and the system
-} do
+' do
 
   given(:user) { create(:user) }
 

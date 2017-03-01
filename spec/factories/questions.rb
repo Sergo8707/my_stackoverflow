@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 FactoryGirl.define do
   factory :question do
     sequence(:title) { |n| "Question #{n} title" }
@@ -5,7 +6,7 @@ FactoryGirl.define do
     user
   end
 
-  factory :invalid_question, class: "Question" do
+  factory :invalid_question, class: 'Question' do
     title nil
     body nil
   end

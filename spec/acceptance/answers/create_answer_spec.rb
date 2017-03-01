@@ -1,8 +1,9 @@
-feature 'Create answer', %q{
+# frozen_string_literal: true
+feature 'Create answer', '
   In order to offer an answer
   As a user
   I want to be able to write the answer
-} do
+' do
   given(:user) { create(:user) }
   given(:question) { create(:question) }
 
