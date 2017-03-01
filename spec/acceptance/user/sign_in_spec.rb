@@ -1,10 +1,11 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
-feature 'User sign in', %q{
+feature 'User sign in', '
   In order to be able ask question
   As an User
   I want be able to sign in
-} do
+' do
 
   given(:user) { create(:user) }
 

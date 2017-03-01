@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 RSpec.describe QuestionsController, type: :controller do
   let(:question) { create(:question) }
   describe 'GET #index' do

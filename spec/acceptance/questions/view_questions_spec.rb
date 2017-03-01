@@ -1,8 +1,9 @@
-feature 'View questions', %q{
+# frozen_string_literal: true
+feature 'View questions', '
   In order to read the text of the question
   As a user
   I want to be able to see the issue
-} do
+' do
   scenario 'User view questions' do
     questions = create_list(:question, 5)
     visit questions_path

@@ -1,8 +1,9 @@
-feature 'Delete question', %q{
+# frozen_string_literal: true
+feature 'Delete question', '
   In order to delete wrong question
   As a user
   I want to be able to delete question
-} do
+' do
 
   given(:user) { create(:user) }
   given(:question) { create(:question, user: user) }

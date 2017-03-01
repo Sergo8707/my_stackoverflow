@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 RSpec.describe AnswersController, type: :controller do
   let(:question) { create(:question) }
   let(:answer) { create(:answer, question: question) }

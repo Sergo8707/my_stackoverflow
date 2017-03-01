@@ -1,8 +1,9 @@
-feature 'Delete answer', %q{
+# frozen_string_literal: true
+feature 'Delete answer', '
   In order to remove the incorrect answer
   As an authenticated user
   I want to be able to delete the answer
-} do
+' do
   given(:user) { create(:user) }
   given(:question) { create(:question, user: user) }
 
