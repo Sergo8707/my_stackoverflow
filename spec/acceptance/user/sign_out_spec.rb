@@ -13,4 +13,9 @@ feature 'User sign out', '
     expect(page).to have_content '×Выход из системы выполнен.'
     expect(current_path).to eq root_path
   end
+
+  scenario 'non-authenticated user try to sign out' do
+    visit root_path
+    expect(page).not_to have_link('Выход')
+  end
 end

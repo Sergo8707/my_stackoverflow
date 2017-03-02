@@ -4,8 +4,8 @@ feature 'View questions', '
   As a user
   I want to be able to see the issue
 ' do
+  let!(:questions) { create_list(:question, 5) }
   scenario 'User view questions' do
-    questions = create_list(:question, 5)
     visit questions_path
     questions.each do |question|
       expect(page).to have_content question.title

@@ -20,13 +20,13 @@ class AnswersController < ApplicationController
 
   def destroy
     @answer = Answer.find(params[:id])
+    flash[:alert] = t('activerecord.controllers.answers.no_delete')
+    @question = @answer.question
     if current_user.author?(@answer)
       @answer.destroy
       flash[:notice] = t('activerecord.controllers.answers.delete')
       redirect_to @answer.question
     else
-      flash[:alert] = t('activerecord.controllers.answers.no_delete')
-      @question = @answer.question
       render 'questions/show'
     end
   end
