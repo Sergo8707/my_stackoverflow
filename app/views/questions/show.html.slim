@@ -14,5 +14,5 @@ div = @question.body
           div
             = link_to t('answers.answer.destroy_answer'), answer, method: :delete
 
-div class="form_add_answer"
+div
   == render 'answers/form', question: @question
