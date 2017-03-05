@@ -5,10 +5,9 @@ div = @question.body
     = link_to t('questions.show.destroy_question'), @question, method: :delete
 
 
-div class="answers"
-- if @question.answers.any?
-  = render 'questions/answers'
-  div class="form_add_answer"
+.answers
+  = render @question.answers
   - if user_signed_in?
-    = render 'answers/form', question: @question
+    .form_add_answer
+      = render 'answers/form', question: @question
 
