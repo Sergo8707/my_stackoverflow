@@ -7,28 +7,29 @@ feature 'Create answer', '
   given(:user) { create(:user) }
   given(:question) { create(:question) }
 
-  scenario 'Authenticated user create answer' do
+  scenario 'Authenticated user create answer', js: true do
     sign_in(user)
     visit question_path(question)
-    fill_in 'Текст ответа', with: 'My answer text'
+    answer_text = 'My answer text'
+    fill_in 'Текст ответа', with: answer_text
     click_on 'Ответить'
-    expect(page).to have_content 'Ваш ответ успешно создан.'
-    expect(page).to have_content 'My answer text'
+    within '.answers' do
+      expect(page).to have_content answer_text
+    end
     expect(current_path).to eq question_path(question)
   end
 
-  scenario 'Authenticated user create answer with invalid attributes' do
+  scenario 'Authenticated user create answer with invalid attributes', js: true do
     sign_in(user)
     visit question_path(question)
-    fill_in 'Текст ответа', with: ''
+    answer_text = 'text567'
+    fill_in 'Текст ответа', with: answer_text
     click_on 'Ответить'
-    expect(page).to have_content 'Ошибка при создании ответа'
+    expect(page).not_to have_content answer_text
   end
 
-  scenario 'Non-authenticated user try to creates qiestion' do
+  scenario 'Non-authenticated user try to creates qiestion', js: true do
     visit question_path(question)
-    fill_in 'Текст ответа', with: 'My answer text'
-    click_on 'Ответить'
-    expect(page).to have_content 'Вам необходимо войти в систему или зарегистрироваться.'
+    expect(page).not_to have_selector('#answer_body')
   end
 end
