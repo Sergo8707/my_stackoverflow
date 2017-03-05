@@ -31,11 +31,11 @@ end
 group :test do
   gem 'capybara'
   gem 'capybara-webkit'
-  gem 'launchy'
-  gem 'shoulda-matchers'
-  gem 'rails-controller-testing'
   gem 'database_cleaner'
-  gem 'simplecov', :require => false
+  gem 'launchy'
+  gem 'rails-controller-testing'
+  gem 'shoulda-matchers'
+  gem 'simplecov', require: false
 end
 
 group :development do
