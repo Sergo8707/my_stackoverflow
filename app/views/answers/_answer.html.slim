@@ -1,7 +1,8 @@
 - if answer.persisted?
-  .answer
+  div class=["answer", "answer-#{answer.id}"]
   = answer.body
   - if user_signed_in? && current_user.author?(answer)
+    = render 'answers/form_edit', answer: answer
     .delete
       = link_to t('answers.answer.destroy_answer'), answer, method: :delete
 

@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 class AnswersController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :destroy]
+  before_action :authenticate_user!, only: [:create, :destroy, :update]
   before_action :set_question, only: [:create]
+  before_action :set_answer, only: [:update, :destroy]
 
   def new
     @answer = Answer.new
@@ -11,6 +12,10 @@ class AnswersController < ApplicationController
     @answer = @question.answers.new(answer_params)
     @answer.user = current_user
     @answer.save
+  end
+
+  def update
+    @answer.update(answer_params) if current_user.author?(@answer)
   end
 
   def destroy
@@ -30,6 +35,10 @@ class AnswersController < ApplicationController
 
   def set_question
     @question = Question.find(params[:question_id])
+  end
+
+  def set_answer
+    @answer = Answer.find(params[:id])
   end
 
   def answer_params
