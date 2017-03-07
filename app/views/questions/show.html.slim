@@ -4,7 +4,6 @@ div = @question.body
   div
     = link_to t('questions.show.destroy_question'), @question, method: :delete
 
-
 .answers
   = render @question.answers
   - if user_signed_in?
