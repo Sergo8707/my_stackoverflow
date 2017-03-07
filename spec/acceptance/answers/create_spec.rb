@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+require_relative '../acceptance_helper'
+
 feature 'Create answer', '
   In order to offer an answer
   As a user
