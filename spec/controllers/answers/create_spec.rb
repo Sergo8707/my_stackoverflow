@@ -9,19 +9,19 @@ RSpec.describe AnswersController, type: :controller do
       it 'save new answer in the database' do
         expect do
           post :create, params: { answer: attributes_for(:answer),
-                                  question_id: question }
+                                  question_id: question, format: :js }
         end.to change(Answer, :count).by(1)
       end
 
       it 'answer belongs to the user' do
         post :create, params: { answer: attributes_for(:answer),
-                                question_id: question }
+                                question_id: question, format: :js }
         expect(Answer.last.user).to eq @user
       end
 
-      it 'redirect to show view' do
-        post :create, params: { answer: attributes_for(:answer), question_id: question }
-        expect(response).to redirect_to question
+      it 'render create template' do
+        post :create, params: { answer: attributes_for(:answer), question_id: question, format: :js }
+        expect(response).to render_template :create
       end
     end
 
@@ -29,13 +29,13 @@ RSpec.describe AnswersController, type: :controller do
       it 'dont save new answer' do
         expect do
           post :create, params: { answer: attributes_for(:invalid_answer),
-                                  question_id: question }
+                                  question_id: question, format: :js }
         end.to_not change(Answer, :count)
       end
 
-      it 're-renders new view' do
-        post :create, params: { answer: attributes_for(:invalid_answer), question_id: question }
-        expect(response).to render_template 'questions/show'
+      it 'render create template' do
+        post :create, params: { answer: attributes_for(:invalid_answer), question_id: question, format: :js }
+        expect(response).to render_template :create
       end
     end
   end

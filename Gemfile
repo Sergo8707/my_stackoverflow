@@ -14,7 +14,7 @@ gem 'jquery-rails'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'rails', '~> 5.0.1'
-gem 'rails-controller-testing'
+
 gem 'rubocop', '~> 0.47.1', require: false
 gem 'sass-rails', '~> 5.0'
 gem 'slim-rails'
@@ -30,8 +30,12 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'database_cleaner'
   gem 'launchy'
+  gem 'rails-controller-testing'
   gem 'shoulda-matchers'
+  gem 'simplecov', require: false
 end
 
 group :development do

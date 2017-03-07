@@ -4,15 +4,9 @@ div = @question.body
   div
     = link_to t('questions.show.destroy_question'), @question, method: :delete
 
-- if @question.answers.any?
-  div
-    - @question.answers.each do |answer|
-      - if answer.persisted?
-        div
-          = answer.body
-        - if user_signed_in? && current_user.author?(answer)
-          div
-            = link_to t('answers.answer.destroy_answer'), answer, method: :delete
+.answers
+  = render @question.answers
+  - if user_signed_in?
+    .form_add_answer
+      = render 'answers/form', question: @question
 
-div
-  == render 'answers/form', question: @question

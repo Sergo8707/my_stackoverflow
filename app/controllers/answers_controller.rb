@@ -10,12 +10,7 @@ class AnswersController < ApplicationController
   def create
     @answer = @question.answers.new(answer_params)
     @answer.user = current_user
-    if @answer.save
-      redirect_to @question, notice: t('activerecord.controllers.answers.create')
-    else
-      flash[:alert] = t('activerecord.controllers.answers.error_create')
-      render 'questions/show'
-    end
+    @answer.save
   end
 
   def destroy
