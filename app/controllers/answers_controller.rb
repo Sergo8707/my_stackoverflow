@@ -4,7 +4,6 @@ class AnswersController < ApplicationController
   before_action :set_answer, only: [:update, :destroy, :mark_best]
   before_action :set_question, only: [:create]
 
-
   def new
     @answer = Answer.new
   end

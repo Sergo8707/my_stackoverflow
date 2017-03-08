@@ -27,7 +27,7 @@ RSpec.describe QuestionsController, type: :controller do
         end
 
         context 'invalid attributes' do
-          let(:expetced_data) { { title: "premier Title", body: 'premier Body' } }
+          let(:expetced_data) { { title: 'premier Title', body: 'premier Body' } }
           let(:question) { create(:question, title: expetced_data[:title], body: expetced_data[:body]) }
 
           before do

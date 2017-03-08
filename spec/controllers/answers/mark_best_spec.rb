@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 RSpec.describe AnswersController, type: :controller do
   let(:question) { create(:question) }
   let(:answer) { create(:answer, question: question) }
@@ -6,7 +7,7 @@ RSpec.describe AnswersController, type: :controller do
       before { sign_in question.user }
 
       context 'asker' do
-        before { patch :mark_best, params: {id: answer}, format: :js }
+        before { patch :mark_best, params: { id: answer }, format: :js }
         it 'marks best answer' do
           expect(answer.reload).to be_best
         end
@@ -20,7 +21,7 @@ RSpec.describe AnswersController, type: :controller do
         sign_in_user
 
         it 'marks best answer' do
-          patch :mark_best, params: {id: answer}, format: :js
+          patch :mark_best, params: { id: answer }, format: :js
           expect(answer.reload).to_not be_best
         end
       end
@@ -28,7 +29,7 @@ RSpec.describe AnswersController, type: :controller do
 
     context 'Non-authenticated user' do
       it 'marks best answer' do
-        patch :mark_best, params: {id: answer}, format: :js
+        patch :mark_best, params: { id: answer }, format: :js
         expect(answer.reload).to_not be_best
       end
     end

@@ -36,7 +36,7 @@ feature 'Create answer', '
     scenario 'body text is blank', js: true do
       fill_in 'Текст ответа', with: ''
       click_on 'Ответить'
-      expect(page).to have_content "Body не может быть пустым!"
+      expect(page).to have_content 'Body не может быть пустым!'
     end
   end
 

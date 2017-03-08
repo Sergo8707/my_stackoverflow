@@ -1,9 +1,10 @@
+# frozen_string_literal: true
 require_relative '../acceptance_helper'
-feature 'Answer editing', %q{
+feature 'Answer editing', "
   In order to fix mistake
   As an author of answer
   I'd like ot be able to edit my answer
-} do
+" do
   given(:user) { create(:user) }
   given(:question) { create(:question) }
   given!(:answer) { create(:answer, question: question, user: user) }
@@ -64,7 +65,7 @@ feature 'Answer editing', %q{
           fill_in 'answer[body]', with: ''
           click_on 'Сохранить'
         end
-        expect(page).to have_content "Body не может быть пустым!"
+        expect(page).to have_content 'Body не может быть пустым!'
       end
     end
   end

@@ -1,10 +1,11 @@
+# frozen_string_literal: true
 require_relative '../acceptance_helper'
 
-feature 'Best answer', %q{
+feature 'Best answer', '
   In order to the best answer
   As a author question
   I want to be able to note the best
-} do
+' do
   given(:user) { create(:user) }
   given(:question) { create(:question, user: user) }
   given!(:answer) { create(:answer, question: question) }

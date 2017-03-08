@@ -30,7 +30,6 @@ class QuestionsController < ApplicationController
     @question.update(question_params) if current_user.author?(@question)
   end
 
-
   def destroy
     if current_user.author?(@question)
       @question.destroy
