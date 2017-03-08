@@ -2,7 +2,7 @@ h2 = @question.title
 div = @question.body
 - if user_signed_in? && current_user.author?(@question)
   div
-    = link_to 'Edit', '', class: 'edit-question-link'
+    = link_to t('questions.show.edit'), '', class: 'edit-question-link'
     = render 'form_edit', question: @question
   div
-    = link_to 'Delete question', @question, method: :delete
+    = link_to t('questions.show.destroy_question'), @question, method: :delete

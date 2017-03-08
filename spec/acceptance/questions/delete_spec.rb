@@ -11,7 +11,7 @@ feature 'Delete question', '
   scenario 'Authenticated user remove question' do
     sign_in(user)
     visit question_path(question)
-    click_on 'Delete question'
+    click_on 'Удалить вопрос'
     expect(page).to have_content 'Ваш вопрос был успешно удален.'
     expect(page).to_not have_content question.title
   end
@@ -20,11 +20,11 @@ feature 'Delete question', '
     another_user = create(:user)
     sign_in(another_user)
     visit question_path(question)
-    expect(page).to_not have_content 'Delete question'
+    expect(page).to_not have_content 'Удалить вопрос'
   end
 
   scenario 'Non-authenticated user tries to remove question' do
     visit question_path(question)
-    expect(page).to_not have_content 'Delete question'
+    expect(page).to_not have_content 'Удалить вопрос'
   end
 end

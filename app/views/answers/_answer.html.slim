@@ -2,9 +2,9 @@
   div class=["answer", "answer-#{answer.id}"]
     .answer-best
       - if answer.best?
-        b Answer best
+        b =t('answers.answer.best')
       - elsif user_signed_in? && current_user.author?(answer.question)
-        = link_to 'Mark best', mark_best_answer_path(answer), method: :patch, remote: true
+        = link_to t('answers.answer.best_up'), mark_best_answer_path(answer), method: :patch, remote: true
 
     = answer.body
     - if user_signed_in? && current_user.author?(answer)

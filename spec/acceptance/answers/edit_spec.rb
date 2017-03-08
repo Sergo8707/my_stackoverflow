@@ -10,7 +10,7 @@ feature 'Answer editing', %q{
 
   scenario 'Unauthenticated user try to edit question' do
     visit question_path(question)
-    expect(page).to_not have_link 'Edit'
+    expect(page).to_not have_link 'Изменить'
   end
 
   describe 'Authenticated user' do
@@ -21,16 +21,16 @@ feature 'Answer editing', %q{
 
     scenario 'author sees link to Edit' do
       within '.answers' do
-        expect(page).to have_link 'Edit'
+        expect(page).to have_link 'Изменить'
       end
     end
 
     scenario 'author try to edit answer', js: true do
-      click_on 'Edit'
+      click_on 'Изменить'
       updated_text = 'edited answer'
       within '.answers' do
         fill_in 'answer[body]', with: updated_text
-        click_on 'Save'
+        click_on 'Сохранить'
         expect(page).to_not have_content answer.body
         expect(page).to have_content updated_text
         expect(page).to_not have_selector 'textarea'
@@ -42,7 +42,7 @@ feature 'Answer editing', %q{
       another_answer = create(:answer, question: question, user: another_user)
       visit question_path(question)
       within ".answer-#{another_answer.id}" do
-        expect(page).to_not have_content 'Edit'
+        expect(page).to_not have_content 'Изменить'
       end
     end
 
@@ -50,9 +50,9 @@ feature 'Answer editing', %q{
       scenario 'body text is too short', js: true do
         answer_text = 'text567'
         within ".answer-#{answer.id}" do
-          click_on 'Edit'
+          click_on 'Изменить'
           fill_in 'answer[body]', with: answer_text
-          click_on 'Save'
+          click_on 'Сохранить'
         end
         expect(page).not_to have_content answer_text
         expect(page).to have_content 'Body слишком короткий'
@@ -60,9 +60,9 @@ feature 'Answer editing', %q{
 
       scenario 'body text is blank', js: true do
         within ".answer-#{answer.id}" do
-          click_on 'Edit'
+          click_on 'Изменить'
           fill_in 'answer[body]', with: ''
-          click_on 'Save'
+          click_on 'Сохранить'
         end
         expect(page).to have_content "Body не может быть пустым!"
       end

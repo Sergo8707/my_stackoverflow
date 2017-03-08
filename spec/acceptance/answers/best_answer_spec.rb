@@ -17,29 +17,29 @@ feature 'Best answer', %q{
 
     context 'author question' do
       scenario 'see mark best link answer' do
-        expect(page).to have_link 'Mark best'
+        expect(page).to have_link 'Сделать лучшим ответом'
       end
 
       scenario 'choose the best', js: true do
-        click_on 'Mark best'
-        expect(page).to have_content 'Answer best'
+        click_on 'Сделать лучшим ответом'
+        expect(page).to have_content 'Лучший ответ'
       end
 
       scenario 'does not see the link in a best', js: true do
-        click_on 'Mark best'
-        expect(page).to_not have_link 'Mark best'
-        expect(page).to have_content 'Answer best'
+        click_on 'Сделать лучшим ответом'
+        expect(page).to_not have_link 'Сделать лучшим ответом'
+        expect(page).to have_content 'Лучший ответ'
       end
 
       scenario 'choose another best', js: true do
         create(:answer, best: true, question: question)
         visit question_path(question)
         within ".answer-#{answer.id}" do
-          click_on 'Mark best'
+          click_on 'Сделать лучшим ответом'
         end
         wait_for_ajax
         within ".answer-#{answer.id}" do
-          expect(page).to have_content 'Answer best'
+          expect(page).to have_content 'Лучший ответ'
         end
       end
 
@@ -50,16 +50,16 @@ feature 'Best answer', %q{
         answers.third.mark_best
         visit question_path(question)
         within ".answer-#{another_answer.id}" do
-          click_on 'Mark best'
+          click_on 'Сделать лучшим ответом'
         end
         wait_for_ajax
         answers.each do |answer|
           within ".answer-#{answer.id}" do
-            expect(page).to_not have_content 'Answer best'
+            expect(page).to_not have_content 'Лучший ответ'
           end
         end
         within ".answer-#{another_answer.id}" do
-          expect(page).to have_content 'Answer best'
+          expect(page).to have_content 'Лучший ответ'
         end
       end
 
@@ -68,11 +68,11 @@ feature 'Best answer', %q{
         visit question_path(question)
         best_answer = answers[2]
         within ".answer-#{best_answer.id}" do
-          click_on 'Mark best'
+          click_on 'Сделать лучшим ответом'
         end
         wait_for_ajax
         within all('.answer').first do
-          expect(page).to have_content 'Answer best'
+          expect(page).to have_content 'Лучший ответ'
         end
       end
     end
@@ -81,12 +81,12 @@ feature 'Best answer', %q{
       another_question = create(:question)
       create(:answer, question: another_question)
       visit question_path(another_question)
-      expect(page).to_not have_link 'Mark best'
+      expect(page).to_not have_link 'Сделать лучшим ответом'
     end
   end
 
   scenario 'Non-authenticated user try to choose best answer' do
     visit question_path(question)
-    expect(page).to_not have_link 'Mark best'
+    expect(page).to_not have_link 'Сделать лучшим ответом'
   end
 end
