@@ -1,3 +1,4 @@
+require_relative '../acceptance_helper'
 feature 'Answer editing', %q{
   In order to fix mistake
   As an author of answer
@@ -18,13 +19,13 @@ feature 'Answer editing', %q{
       visit question_path(question)
     end
 
-    scenario 'Author sees link to Edit' do
+    scenario 'author sees link to Edit' do
       within '.answers' do
         expect(page).to have_link 'Edit'
       end
     end
 
-    scenario 'Author try to edit answer', js: true do
+    scenario 'author try to edit answer', js: true do
       click_on 'Edit'
       updated_text = 'edited answer'
       within '.answers' do
@@ -54,7 +55,7 @@ feature 'Answer editing', %q{
           click_on 'Save'
         end
         expect(page).not_to have_content answer_text
-        expect(page).to have_content 'Body is too short'
+        expect(page).to have_content 'Body слишком короткий'
       end
 
       scenario 'body text is blank', js: true do
@@ -63,7 +64,7 @@ feature 'Answer editing', %q{
           fill_in 'answer[body]', with: ''
           click_on 'Save'
         end
-        expect(page).to have_content "Body can't be blank"
+        expect(page).to have_content "Body не может быть пустым!"
       end
     end
   end

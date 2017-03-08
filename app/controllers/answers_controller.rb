@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 class AnswersController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :destroy, :update]
+  before_action :authenticate_user!, only: [:create, :destroy, :update, :mark_best]
+  before_action :set_answer, only: [:update, :destroy, :mark_best]
   before_action :set_question, only: [:create]
-  before_action :set_answer, only: [:update, :destroy]
+
 
   def new
     @answer = Answer.new
@@ -14,19 +15,23 @@ class AnswersController < ApplicationController
     @answer.save
   end
 
+  def mark_best
+    @answer.mark_best if current_user.author?(@answer.question)
+  end
+
   def update
     @answer.update(answer_params) if current_user.author?(@answer)
   end
 
   def destroy
     @answer = Answer.find(params[:id])
-    flash[:alert] = t('activerecord.controllers.answers.no_delete')
     @question = @answer.question
     if current_user.author?(@answer)
       @answer.destroy
       flash[:notice] = t('activerecord.controllers.answers.delete')
       redirect_to @answer.question
     else
+      flash[:alert] = t('activerecord.controllers.answers.no_delete')
       render 'questions/show'
     end
   end

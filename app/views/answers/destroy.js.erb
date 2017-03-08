@@ -1,0 +1,6 @@
+<% if @answer.destroyed? %>
+  $('.answer-<%= @answer.id %>').remove();
+  $('.notice').html('Ваш ответ был успешно удален.');
+<% else %>
+  $('.alert').html('Вы не можете удалить ответ!');
+<% end %>

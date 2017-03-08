@@ -15,6 +15,7 @@ ru:
       destroy_question: 'Удалить вопрос'
   answers:
     answer:
+      edit: 'Изменить'
       body_answer: 'Текст ответа'
       destroy_answer: 'Удалить ответ'
   shared:

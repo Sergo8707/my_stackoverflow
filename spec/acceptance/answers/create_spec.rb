@@ -20,7 +20,7 @@ feature 'Create answer', '
     expect(current_path).to eq question_path(question)
   end
 
-  describe 'Authenticated user create answer with invalid attributes', js: true do
+  describe 'Authenticated user create answer with invalid attributes' do
     before do
       sign_in(user)
       visit question_path(question)
