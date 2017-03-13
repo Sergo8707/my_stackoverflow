@@ -2,11 +2,12 @@
   div class=["answer", "answer-#{answer.id}"]
     .answer-best
       - if answer.best?
-        b =t('answers.answer.best')
+        b = t('answers.answer.best')
       - elsif user_signed_in? && current_user.author?(answer.question)
         = link_to t('answers.answer.best_up'), mark_best_answer_path(answer), method: :patch, remote: true
 
-    = answer.body
+      = answer.body
+      = render 'attachments/attachments', entity: answer
     - if user_signed_in? && current_user.author?(answer)
       = render 'answers/form_edit', answer: answer
       .delete

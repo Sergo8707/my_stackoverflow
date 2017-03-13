@@ -9,6 +9,7 @@ class QuestionsController < ApplicationController
 
   def show
     @answer = @question.answers.build
+    @answer.attachments.build
   end
 
   def new
@@ -38,6 +39,8 @@ class QuestionsController < ApplicationController
       redirect_to questions_path, notice: t('activerecord.controllers.questions.delete')
     else
       flash[:alert] = t('activerecord.controllers.questions.no_delete')
+      @answer = @question.answers.build
+      @answer.attachments.build
       render :show
     end
   end
