@@ -1,10 +1,11 @@
+# frozen_string_literal: true
 require_relative '../acceptance_helper'
 
-feature 'Add files to question', %q{
+feature 'Add files to question', "
   In order to illustrate my question
   As an question's author
   I'd like to be able to attach files
-} do
+" do
   given(:user) { create(:user) }
 
   before do

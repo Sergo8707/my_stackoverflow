@@ -16,7 +16,6 @@ RSpec.describe Answer do
     it { should accept_nested_attributes_for :attachments }
   end
 
-
   describe 'best answer' do
     let(:question) { create(:question) }
     let(:answer) { create(:answer, question: question) }

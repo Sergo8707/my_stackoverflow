@@ -1,10 +1,11 @@
+# frozen_string_literal: true
 require_relative '../acceptance_helper'
 
-feature 'Delete files of answer', %q{
+feature 'Delete files of answer', '
   In order to delete the downloaded file by mistake
   As the author of the answer
   I want to be able to delete attached file
-} do
+' do
   given(:user) { create(:user) }
   given(:question) { create(:question) }
   given(:answer) { create(:answer, user: user, question: question) }
@@ -16,7 +17,6 @@ feature 'Delete files of answer', %q{
   end
 
   describe 'Authenticated user' do
-
     before do
       sign_in(user)
     end
