@@ -3,4 +3,9 @@
   = f.text_field :title
   = f.label :body
   = f.text_area :body
+  p Attachments:
+  p
+    = f.fields_for :attachments do |a|
+      = a.label :file
+      = a.file_field :file
   = f.submit t('helpers.label.question.create')
