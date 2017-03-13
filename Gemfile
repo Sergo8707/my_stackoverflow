@@ -21,6 +21,7 @@ gem 'slim-rails'
 gem 'turbolinks', '~> 5'
 gem 'twitter-bootstrap-rails'
 gem 'uglifier', '>= 1.3.0'
+gem 'carrierwave'
 
 group :development, :test do
   gem 'byebug', platform: :mri
