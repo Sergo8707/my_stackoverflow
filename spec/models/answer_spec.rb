@@ -9,7 +9,13 @@ RSpec.describe Answer do
   context 'association' do
     it { should belong_to(:question) }
     it { should belong_to(:user) }
+    it { should have_many(:attachments).dependent(:destroy) }
   end
+
+  describe 'attributes' do
+    it { should accept_nested_attributes_for :attachments }
+  end
+
 
   describe 'best answer' do
     let(:question) { create(:question) }
