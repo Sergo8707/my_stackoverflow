@@ -11,10 +11,16 @@ ru:
     new:
       create_question: 'Создать вопрос'
     show:
+      save: 'Сохранить'
+      edit: 'Изменить вопрос'
       answers: 'Ответы'
       destroy_question: 'Удалить вопрос'
   answers:
     answer:
+      best: 'Лучший ответ'
+      best_up: 'Сделать лучшим ответом'
+      save: 'Сохранить'
+      edit: 'Изменить'
       body_answer: 'Текст ответа'
       destroy_answer: 'Удалить ответ'
   shared:

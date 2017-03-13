@@ -1,7 +1,13 @@
 - if answer.persisted?
-  .answer
-  = answer.body
-  - if user_signed_in? && current_user.author?(answer)
-    .delete
-      = link_to t('answers.answer.destroy_answer'), answer, method: :delete
+  div class=["answer", "answer-#{answer.id}"]
+    .answer-best
+      - if answer.best?
+        b =t('answers.answer.best')
+      - elsif user_signed_in? && current_user.author?(answer.question)
+        = link_to t('answers.answer.best_up'), mark_best_answer_path(answer), method: :patch, remote: true
 
+    = answer.body
+    - if user_signed_in? && current_user.author?(answer)
+      = render 'answers/form_edit', answer: answer
+      .delete
+        = link_to t('answers.answer.destroy_answer'), answer, method: :delete, data: {confirm: 'The answer will be deleted. You are sure?'}, remote: true
