@@ -14,7 +14,7 @@ feature 'Add files to question', %q{
 
   scenario 'User adds file when asks question' do
     fill_in 'Заголовок', with: 'Test question'
-    fill_in 'Ваш вопроc', with: 'text question'
+    fill_in 'Ваш вопрос', with: 'text question'
     attach_file 'File', "#{Rails.root}/spec/spec_helper.rb"
     click_on 'Создать'
 
@@ -23,7 +23,7 @@ feature 'Add files to question', %q{
 
   scenario 'User adds several files when asks question', js: true do
     fill_in 'Заголовок', with: 'Test question'
-    fill_in 'Ваш вопроc', with: 'text question'
+    fill_in 'Ваш вопрос', with: 'text question'
     click_on 'Add file'
     inputs = all('input[type="file"]')
     inputs[0].set("#{Rails.root}/spec/spec_helper.rb")

@@ -23,6 +23,7 @@ gem 'twitter-bootstrap-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'carrierwave'
 gem 'remotipart'
+gem 'cocoon'
 
 group :development, :test do
   gem 'byebug', platform: :mri
