@@ -16,7 +16,8 @@ class QuestionsController < ApplicationController
     @question.attachments.build
   end
 
-  def edit; end
+  def edit;
+  end
 
   def create
     @question = current_user.questions.new(question_params)
