@@ -1,10 +1,11 @@
+# frozen_string_literal: true
 require_relative '../acceptance_helper'
 
-feature 'Delete files of question', %q{
+feature 'Delete files of question', '
   In order to delete the downloaded file by mistake
   As the author of the question
   I want to be able to delete attached file
-} do
+' do
   given(:user) { create(:user) }
   given(:question) { create(:question, user: user) }
   given!(:attachment) { create(:attachment, attachable: question) }
