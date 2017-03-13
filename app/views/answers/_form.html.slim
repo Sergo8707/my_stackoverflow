@@ -2,7 +2,7 @@
   = f.label :body, t('answers.answer.body_answer')
   br
   .answer-errors
-    = f.text_area :body
-    br
-    = render 'attachments/form', f: f
+  = f.text_area :body
+  br
+  = render 'attachments/form', f: f
   = f.submit t('shared.answer_form.asked')

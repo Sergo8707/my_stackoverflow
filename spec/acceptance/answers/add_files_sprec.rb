@@ -14,9 +14,9 @@ feature 'Add files to answer', %q{
   end
 
   scenario 'User adds file to answer', js: true do
-    fill_in 'Body', with: 'My answer text'
+    fill_in 'Текст ответа', with: 'My answer text'
     attach_file 'File', "#{Rails.root}/spec/spec_helper.rb"
-    click_on 'Add new answer'
+    click_on 'Ответить'
 
     within '.answers' do
       expect(page).to have_link 'spec_helper.rb', href: '/uploads/attachment/file/1/spec_helper.rb'
@@ -29,7 +29,7 @@ feature 'Add files to answer', %q{
     inputs = all('input[type="file"]')
     inputs[0].set("#{Rails.root}/spec/spec_helper.rb")
     inputs[1].set("#{Rails.root}/public/favicon.ico")
-    click_on 'Add new answer'
+    click_on 'Ответить'
 
     within '.answers' do
       expect(page).to have_link 'spec_helper.rb', href: '/uploads/attachment/file/1/spec_helper.rb'

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
+require 'rails_helper'
+
 RSpec.configure do |config|
   Capybara.javascript_driver = :webkit
-
-  config.use_transactional_fixtures = false
 
   config.include AcceptanceHelper, type: :feature
 
