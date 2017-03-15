@@ -16,22 +16,23 @@ feature 'Add files to question', "
   scenario 'User adds file when asks question' do
     fill_in 'Заголовок', with: 'Test question'
     fill_in 'Ваш вопрос', with: 'text question'
-    attach_file 'File', "#{Rails.root}/spec/spec_helper.rb"
+    attach_file 'File', "#{Rails.root}/spec/support/test_file.dat"
     click_on 'Создать'
 
-    expect(page).to have_link 'spec_helper.rb', href: '/uploads/attachment/file/1/spec_helper.rb'
+    expect(page).to have_link 'test_file.dat', href: '/uploads/attachment/file/1/test_file.dat'
   end
 
   scenario 'User adds several files when asks question', js: true do
     fill_in 'Заголовок', with: 'Test question'
     fill_in 'Ваш вопрос', with: 'text question'
     click_on 'Add file'
+
     inputs = all('input[type="file"]')
-    inputs[0].set("#{Rails.root}/spec/spec_helper.rb")
-    inputs[1].set("#{Rails.root}/public/favicon.ico")
+    inputs[0].set("#{Rails.root}/spec/support/test_file.dat")
+    inputs[1].set("#{Rails.root}/spec/support/test_file.dat")
     click_on 'Создать'
 
-    expect(page).to have_link 'spec_helper.rb', href: '/uploads/attachment/file/1/spec_helper.rb'
-    expect(page).to have_link 'favicon.ico', href: '/uploads/attachment/file/2/favicon.ico'
+    expect(page).to have_link 'test_file.dat', href: '/uploads/attachment/file/1/test_file.dat'
+    expect(page).to have_link 'test_file.dat', href: '/uploads/attachment/file/2/test_file.dat'
   end
 end
