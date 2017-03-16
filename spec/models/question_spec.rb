@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 RSpec.describe Question do
+  it_behaves_like 'votable'
   context 'validation' do
     it { should validate_presence_of :title }
     it { should validate_presence_of :body }
