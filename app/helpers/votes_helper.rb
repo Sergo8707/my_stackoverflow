@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module VotesHelper
   def user_can_vote_for?(entity)
     user_signed_in? && !current_user.author?(entity)

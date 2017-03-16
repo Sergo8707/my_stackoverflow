@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class VotesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_votable!, only: [:create]
@@ -29,16 +30,16 @@ class VotesController < ApplicationController
 
   def render_success(item, action, message)
     render json: item.slice(:id, :votable_id)
-                     .merge(
-                         votable_type: item.votable_type.underscore,
-                         votable_rating: item.votable.rating,
-                         action: action,
-                         message: message
-                     )
+      .merge(
+        votable_type: item.votable_type.underscore,
+        votable_rating: item.votable.rating,
+        action: action,
+        message: message
+      )
   end
 
   def render_error(status, error = 'error', message = 'message')
-    render json: {error: error, error_message: message}, status: status
+    render json: { error: error, error_message: message }, status: status
   end
 
   def set_votable!
