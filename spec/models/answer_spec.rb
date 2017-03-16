@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 RSpec.describe Answer do
-
   it_behaves_like 'votable'
 
   context 'validation' do

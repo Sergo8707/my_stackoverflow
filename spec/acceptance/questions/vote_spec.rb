@@ -1,10 +1,11 @@
+# frozen_string_literal: true
 require_relative '../acceptance_helper'
 
-feature 'Vote questions', %q{
+feature 'Vote questions', '
   In order to be able to vote "yes"/"against" question
   As an authenticated user
   I want to be able to vote for question
-} do
+' do
   given(:user) { create(:user) }
   given(:question) { create(:question) }
 
