@@ -5,7 +5,7 @@
         b = t('answers.answer.best')
       - elsif user_signed_in? && current_user.author?(answer.question)
         = link_to t('answers.answer.best_up'), mark_best_answer_path(answer), method: :patch, remote: true
-
+      = render 'votes/vote', entity: answer
       = answer.body
       = render 'attachments/attachments', entity: answer
       - if user_signed_in? && current_user.author?(answer)
