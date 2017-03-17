@@ -25,7 +25,7 @@ feature 'Add files to question', "
   scenario 'User adds several files when asks question', js: true do
     fill_in 'Заголовок', with: 'Test question'
     fill_in 'Ваш вопрос', with: 'text question'
-    click_on 'Add file'
+    click_on 'Добавить файл'
 
     inputs = all('input[type="file"]')
     inputs[0].set("#{Rails.root}/spec/support/test_file.dat")
