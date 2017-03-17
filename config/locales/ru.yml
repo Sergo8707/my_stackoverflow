@@ -27,6 +27,17 @@ ru:
     answer_form:
       asked: 'Ответить'
       you_answer: 'Ваш ответ'
+  attachments:
+    attachment: 'Прикрепленные файлы:'
+    remove: 'Удалить файл'
+    add_file: 'Добавить файл'
+  votes:
+    rating: 'Рейтинг: '
+    cancel: 'Отменить голос'
+    vote_up: 'Голос вверх'
+    vote_down: 'Голос вниз'
+
+
 
   helpers:
     label:

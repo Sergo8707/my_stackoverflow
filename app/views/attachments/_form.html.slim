@@ -1,7 +1,7 @@
 div
-  | Attachments:
+  = t('attachments.attachment')
   div
     = f.fields_for :attachments do |a|
       = render 'attachments/attachment_fields', f: a
     .links
-      = link_to_add_association 'Add file', f, :attachments, partial: 'attachments/attachment_fields'
+      = link_to_add_association t('attachments.add_file'), f, :attachments, partial: 'attachments/attachment_fields'

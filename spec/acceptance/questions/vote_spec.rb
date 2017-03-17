@@ -17,56 +17,56 @@ feature 'Vote questions', '
       end
 
       scenario 'see links for votes to question', js: true do
-        expect(page).to have_link 'Vote Up'
-        expect(page).to have_link 'Vote Down'
-        expect(page).to_not have_link 'Cancel vote'
+        expect(page).to have_link 'Голос вверх'
+        expect(page).to have_link 'Голос вниз'
+        expect(page).to_not have_link 'Отменить голос'
       end
 
       scenario 'vote up', js: true do
-        click_on 'Vote Up'
-        expect(page).to have_text 'Rating:1'
-        expect(page).to_not have_link 'Vote Up'
-        expect(page).to_not have_link 'Vote Down'
-        expect(page).to have_link 'Cancel vote'
+        click_on 'Голос вверх'
+        expect(page).to have_text 'Рейтинг: 1'
+        expect(page).to_not have_link 'Голос вверх'
+        expect(page).to_not have_link 'Голос вниз'
+        expect(page).to have_link 'Отменить голос'
       end
 
       scenario 'vote down', js: true do
-        click_on 'Vote Down'
-        expect(page).to have_text 'Rating:-1'
-        expect(page).to_not have_link 'Vote Up'
-        expect(page).to_not have_link 'Vote Down'
-        expect(page).to have_link 'Cancel vote'
+        click_on 'Голос вниз'
+        expect(page).to have_text 'Рейтинг: -1'
+        expect(page).to_not have_link 'Голос вверх'
+        expect(page).to_not have_link 'Голос вниз'
+        expect(page).to have_link 'Отменить голос'
       end
 
       scenario 'vote cancel', js: true do
         create(:vote, votable: question, user: user)
         visit question_path(question)
-        expect(page).to have_text 'Rating:1'
-        expect(page).to_not have_link 'Vote Up'
-        expect(page).to_not have_link 'Vote Down'
-        expect(page).to have_link 'Cancel vote'
+        expect(page).to have_text 'Рейтинг: 1'
+        expect(page).to_not have_link 'Голос вверх'
+        expect(page).to_not have_link 'Голос вниз'
+        expect(page).to have_link 'Отменить голос'
 
-        click_on 'Cancel vote'
-        expect(page).to have_text 'Rating:0'
-        expect(page).to have_link 'Vote Up'
-        expect(page).to have_link 'Vote Down'
-        expect(page).to_not have_link 'Cancel vote'
+        click_on 'Отменить голос'
+        expect(page).to have_text 'Рейтинг: 0'
+        expect(page).to have_link 'Голос вверх'
+        expect(page).to have_link 'Голос вниз'
+        expect(page).to_not have_link 'Отменить голос'
       end
     end
 
     scenario 'author question tries to vote', js: true do
       sign_in(question.user)
       visit question_path(question)
-      expect(page).to have_text 'Rating:0'
-      expect(page).to_not have_link 'Vote Up'
-      expect(page).to_not have_link 'Vote Down'
+      expect(page).to have_text 'Рейтинг: 0'
+      expect(page).to_not have_link 'Голос вверх'
+      expect(page).to_not have_link 'Голос вниз'
     end
   end
 
   scenario 'Non-authenticated user tries', js: true do
     visit question_path(question)
-    expect(page).to have_text 'Rating:0'
-    expect(page).to_not have_link 'Vote Up'
-    expect(page).to_not have_link 'Vote Down'
+    expect(page).to have_text 'Рейтинг: 0'
+    expect(page).to_not have_link 'Голос вверх'
+    expect(page).to_not have_link 'Голос вниз'
   end
 end
