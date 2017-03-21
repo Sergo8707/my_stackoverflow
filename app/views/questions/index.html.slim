@@ -13,6 +13,7 @@ ul.nav.nav-tabs.navbar-right
 .tab-content
   #home.tab-pane.fade.in.active
     h3 Топ вопросов
+  section.questions
     - @questions.each do |question|
       ul.list-group-item
         .table = link_to question.title, question
