@@ -3,8 +3,11 @@ h2 = @question.title
 div = @question.body
 = render 'attachments/attachments', entity: @question
 - if user_signed_in? && current_user.author?(@question)
-  div
+  div.question-edit
     = link_to t('questions.show.edit'), '', class: 'edit-question-link'
     = render 'form_edit', question: @question
   div
     = link_to t('questions.show.destroy_question'), @question, method: :delete
+
+div class="comments comments-question-#{@question.id}" *{ 'data-question-id' => @question.id }
+= render 'comments/show', commentable: @question

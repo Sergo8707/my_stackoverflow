@@ -12,6 +12,8 @@ RSpec.describe Question do
     it { should have_many(:answers).dependent(:destroy) }
     it { should belong_to(:user) }
     it { should have_many(:attachments).dependent(:destroy) }
+    it_behaves_like 'votable'
+    it_behaves_like 'commentable'
   end
 
   describe 'attributes' do
