@@ -1,6 +1,6 @@
 div
   = link_to t('answers.answer.edit'), '', class: 'edit-answer-link', data: { answer_id: answer.id }
-div
+div.answer-edit
   = form_for answer, remote: true, html: { id: "edit-answer-#{answer.id}" } do |f|
     = f.label :body, t('answers.answer.body_answer')
     = f.text_area :body, id: "body-answer-#{answer.id}"
