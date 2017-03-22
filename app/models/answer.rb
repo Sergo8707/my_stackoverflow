@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 class Answer < ApplicationRecord
+  include HasUser
+  include Attachable
   include Votable
   include Commentable
   belongs_to :question
-  belongs_to :user
-  has_many :attachments, as: :attachable, dependent: :destroy
-
-  accepts_nested_attributes_for :attachments, reject_if: :all_blank, allow_destroy: true
 
   validates :body, :question, presence: true, length: { minimum: 10 }
 
