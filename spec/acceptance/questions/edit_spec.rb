@@ -1,10 +1,11 @@
+# frozen_string_literal: true
 require_relative '../acceptance_helper'
 
-feature 'Question editing', %q{
+feature 'Question editing', "
   In order to fix mistake
   As an author of question
   I'd like ot be able to edit my question
-} do
+" do
   given(:user) { create(:user) }
   given(:question) { create(:question, user: user) }
 
@@ -58,17 +59,17 @@ feature 'Question editing', %q{
           end
         end
 
-        context "attributes blank" do
+        context 'attributes blank' do
           scenario 'title', js: true do
             fill_in 'question[title]', with: ''
             click_on 'Сохранить'
-            expect(page).to have_content "Title не может быть пустым!"
+            expect(page).to have_content 'Title не может быть пустым!'
           end
 
           scenario 'body', js: true do
             fill_in 'question[body]', with: ''
             click_on 'Сохранить'
-            expect(page).to have_content "Body не может быть пустым!"
+            expect(page).to have_content 'Body не может быть пустым!'
           end
         end
       end

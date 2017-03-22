@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 require 'rails_helper'
 RSpec.describe Question do
-
   it_behaves_like 'has_user'
   it_behaves_like 'attachable'
   it_behaves_like 'votable'

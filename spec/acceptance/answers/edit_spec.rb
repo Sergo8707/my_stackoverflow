@@ -36,39 +36,39 @@ feature 'Answer editing', "
         expect(page).to have_content updated_text
         within '.answer-edit' do
           expect(page).to_not have_selector 'textarea'
+        end
+      end
+    end
+
+    scenario "not author try to edit other user's answer" do
+      another_user = create(:user)
+      another_answer = create(:answer, question: question, user: another_user)
+      visit question_path(question)
+      within ".answer-#{another_answer.id}" do
+        expect(page).to_not have_content 'Изменить'
+      end
+    end
+
+    context 'try update to answer with invalid attributes' do
+      scenario 'body text is too short', js: true do
+        answer_text = 'text567'
+        within ".answer-#{answer.id}" do
+          click_on 'Изменить'
+          fill_in 'answer[body]', with: answer_text
+          click_on 'Сохранить'
+        end
+        expect(page).not_to have_content answer_text
+        expect(page).to have_content 'Body слишком короткий'
+      end
+
+      scenario 'body text is blank', js: true do
+        within ".answer-#{answer.id}" do
+          click_on 'Изменить'
+          fill_in 'answer[body]', with: ''
+          click_on 'Сохранить'
+        end
+        expect(page).to have_content 'Body не может быть пустым!'
       end
     end
   end
-
-  scenario "not author try to edit other user's answer" do
-    another_user = create(:user)
-    another_answer = create(:answer, question: question, user: another_user)
-    visit question_path(question)
-    within ".answer-#{another_answer.id}" do
-      expect(page).to_not have_content 'Изменить'
-    end
-  end
-
-  context 'try update to answer with invalid attributes' do
-    scenario 'body text is too short', js: true do
-      answer_text = 'text567'
-      within ".answer-#{answer.id}" do
-        click_on 'Изменить'
-        fill_in 'answer[body]', with: answer_text
-        click_on 'Сохранить'
-      end
-      expect(page).not_to have_content answer_text
-      expect(page).to have_content 'Body слишком короткий'
-    end
-
-    scenario 'body text is blank', js: true do
-      within ".answer-#{answer.id}" do
-        click_on 'Изменить'
-        fill_in 'answer[body]', with: ''
-        click_on 'Сохранить'
-      end
-      expect(page).to have_content 'Body не может быть пустым!'
-    end
-  end
-end
 end

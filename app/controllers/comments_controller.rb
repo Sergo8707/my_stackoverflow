@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_commentable!, only: [:create]
@@ -18,15 +19,15 @@ class CommentsController < ApplicationController
 
   def render_success(item, action, message)
     render json: item.slice(:id, :commentable_id, :content)
-                     .merge(
-                         commentable_type: item.commentable_type.underscore,
-                         action: action,
-                         message: message
-                     )
+      .merge(
+        commentable_type: item.commentable_type.underscore,
+        action: action,
+        message: message
+      )
   end
 
   def render_error(status, error = 'error', message = 'message')
-    render json: {error: error, error_message: message}, status: status
+    render json: { error: error, error_message: message }, status: status
   end
 
   def comment_params
@@ -42,9 +43,9 @@ class CommentsController < ApplicationController
   def publish_comment
     return if @comment.errors.any?
     ActionCable.server.broadcast(
-        "comments",
-        comment: @comment,
-        commentable_type: @comment.commentable_type.underscore
+      'comments',
+      comment: @comment,
+      commentable_type: @comment.commentable_type.underscore
     )
   end
 end
