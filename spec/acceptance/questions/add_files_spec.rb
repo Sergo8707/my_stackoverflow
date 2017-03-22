@@ -14,8 +14,8 @@ feature 'Add files to question', "
   end
 
   scenario 'User adds file when asks question' do
-    fill_in 'Заголовок', with: 'Test question'
-    fill_in 'Ваш вопрос', with: 'text question'
+    fill_in 'Заголовок', with: 'Test question Test question'
+    fill_in 'Ваш вопрос', with: 'text question text question'
     attach_file 'File', "#{Rails.root}/spec/support/test_file.dat"
     click_on 'Создать'
 
@@ -23,8 +23,8 @@ feature 'Add files to question', "
   end
 
   scenario 'User adds several files when asks question', js: true do
-    fill_in 'Заголовок', with: 'Test question'
-    fill_in 'Ваш вопрос', with: 'text question'
+    fill_in 'Заголовок', with: 'Test question Test question'
+    fill_in 'Ваш вопрос', with: 'text question text question'
     click_on 'Добавить файл'
 
     inputs = all('input[type="file"]')
@@ -32,7 +32,7 @@ feature 'Add files to question', "
     inputs[1].set("#{Rails.root}/spec/support/test_file.dat")
     click_on 'Создать'
 
-    expect(page).to have_link 'test_file.dat', href: '/uploads/attachment/file/1/test_file.dat'
     expect(page).to have_link 'test_file.dat', href: '/uploads/attachment/file/2/test_file.dat'
+    expect(page).to have_link 'test_file.dat', href: '/uploads/attachment/file/3/test_file.dat'
   end
 end

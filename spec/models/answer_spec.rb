@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 RSpec.describe Answer do
+  it_behaves_like 'has_user'
+  it_behaves_like 'attachable'
   it_behaves_like 'votable'
   it_behaves_like 'commentable'
 
@@ -11,12 +13,6 @@ RSpec.describe Answer do
 
   context 'association' do
     it { should belong_to(:question) }
-    it { should belong_to(:user) }
-    it { should have_many(:attachments).dependent(:destroy) }
-  end
-
-  describe 'attributes' do
-    it { should accept_nested_attributes_for :attachments }
   end
 
   describe 'best answer' do

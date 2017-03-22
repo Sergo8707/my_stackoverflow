@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  it { should belong_to(:user) }
+  it_behaves_like 'has_user'
 
   describe 'association' do
     it { should belong_to(:commentable) }
