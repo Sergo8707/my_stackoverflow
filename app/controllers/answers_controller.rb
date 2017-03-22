@@ -54,10 +54,10 @@ class AnswersController < ApplicationController
   def publish_answer
     return if @answer.errors.any?
     ActionCable.server.broadcast(
-        "question_#{@question.id}_answers",
-        answer: @answer,
-        question_author: @answer.question.user.id,
-        attachments: @answer.attachments.map { |a| { id: a.id, file_name: a.file.identifier, file_url: a.file.url } }
+      "question_#{@question.id}_answers",
+      answer: @answer,
+      question_author: @answer.question.user.id,
+      attachments: @answer.attachments.map { |a| { id: a.id, file_name: a.file.identifier, file_url: a.file.url } }
     )
   end
 end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Comment < ApplicationRecord
   include HasUser
   belongs_to :commentable, polymorphic: true
