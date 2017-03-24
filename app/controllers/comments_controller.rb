@@ -31,9 +31,9 @@ class CommentsController < ApplicationController
   def publish_comment
     return if @comment.errors.any?
     ActionCable.server.broadcast(
-        "comments",
-        comment: @comment,
-        commentable_type: @comment.commentable_type.underscore
+      'comments',
+      comment: @comment,
+      commentable_type: @comment.commentable_type.underscore
     )
   end
 end

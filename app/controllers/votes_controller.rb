@@ -34,12 +34,12 @@ class VotesController < ApplicationController
   def prepare_data(item)
     item.slice(:id, :votable_id)
         .merge(
-            votable_type: item.votable_type.underscore,
-            votable_rating: item.votable.rating
+          votable_type: item.votable_type.underscore,
+          votable_rating: item.votable.rating
         )
   end
 
   def vote_params
-    {rating: params[:rating] == 'up' ? :up : :down}
+    { rating: params[:rating] == 'up' ? :up : :down }
   end
 end
