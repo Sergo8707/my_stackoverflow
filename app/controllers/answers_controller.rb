@@ -13,7 +13,7 @@ class AnswersController < ApplicationController
   end
 
   def create
-    respond_with(@answer = @question.answers.create(answer_params))
+    respond_with(@answer = @question.answers.create(answer_params.merge(user_id: current_user.id)))
   end
 
   def mark_best
@@ -42,7 +42,7 @@ class AnswersController < ApplicationController
   end
 
   def answer_params
-    params.require(:answer).permit(:body, attachments_attributes: [:file, :id, :_destroy]).merge(user_id: current_user.id)
+    params.require(:answer).permit(:body, attachments_attributes: [:file, :id, :_destroy])
   end
 
   def publish_answer
