@@ -3,7 +3,8 @@ require 'rails_helper'
 
 RSpec.describe CommentsController, type: :controller do
   let(:question) { create(:question) }
-  let!(:comment_params) { { comment: attributes_for(:comment), question_id: question, format: :json } }
+  let!(:comment_params) { {comment: attributes_for(:comment), question_id: question, format: :json} }
+  let(:data) { JSON.parse(response.body) }
 
   describe 'POST #create' do
     context 'Authenticated user' do
@@ -24,7 +25,6 @@ RSpec.describe CommentsController, type: :controller do
         it 'render success json' do
           post :create, params: comment_params
           comment = question.comments.last
-          data = JSON.parse(response.body)
 
           expect(response).to have_http_status :success
           expect(data['id']).to eq assigns(:comment).id
@@ -36,7 +36,7 @@ RSpec.describe CommentsController, type: :controller do
       end
 
       context 'with invalid attributes' do
-        let!(:invalid_comment_params) { { question_id: question, comment: { content: 'text' }, format: :js } }
+        let!(:invalid_comment_params) { {question_id: question, comment: {content: 'text'}, format: :js} }
         it 'does not save the comment' do
           expect do
             post :create, params: invalid_comment_params
@@ -45,7 +45,6 @@ RSpec.describe CommentsController, type: :controller do
 
         it 'render error json' do
           post :create, params: invalid_comment_params
-          data = JSON.parse(response.body)
           expect(response).to have_http_status :unprocessable_entity
           expect(data['error']).to eq 'Error save'
           expect(data['error_message']).to eq 'Not the correct comment data!'
