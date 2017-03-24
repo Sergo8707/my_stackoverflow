@@ -13,7 +13,9 @@ ru:
     questions:
       create:
         notice: 'Ваш вопрос успешно создан.'
-        alert: 'Not the correct question data!'
       destroy:
         notice: 'Ваш вопрос был успешно удален.'
-        alert: 'You can not remove an question!'
+    answers:
+      destroy:
+        notice: 'Ваш ответ был успешно удален.'
+        alert: 'Вы не можете удалить ответ!'

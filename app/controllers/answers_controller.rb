@@ -6,35 +6,29 @@ class AnswersController < ApplicationController
 
   after_action :publish_answer, only: [:create]
 
+  respond_to :js
+
   def new
-    @answer = Answer.new
+    respond_with(@answer = Answer.new)
   end
 
   def create
-    @answer = @question.answers.new(answer_params)
-    @answer.user = current_user
-    @answer.save
+    respond_with(@answer = @question.answers.create(answer_params))
   end
 
   def mark_best
     @answer.mark_best if current_user.author?(@answer.question)
+    respond_with(@answer)
   end
 
   def update
     @answer.update(answer_params) if current_user.author?(@answer)
+    respond_with(@answer)
   end
 
   def destroy
-    @answer = Answer.find(params[:id])
-    @question = @answer.question
-    if current_user.author?(@answer)
-      @answer.destroy
-      flash[:notice] = t('activerecord.controllers.answers.delete')
-      redirect_to @answer.question
-    else
-      flash[:alert] = t('activerecord.controllers.answers.no_delete')
-      render 'questions/show'
-    end
+    @answer.destroy if current_user.author?(@answer)
+    respond_with(@answer)
   end
 
   private
@@ -48,16 +42,16 @@ class AnswersController < ApplicationController
   end
 
   def answer_params
-    params.require(:answer).permit(:body, :question_id, attachments_attributes: [:file, :id, :_destroy])
+    params.require(:answer).permit(:body, attachments_attributes: [:file, :id, :_destroy]).merge(user_id: current_user.id)
   end
 
   def publish_answer
     return if @answer.errors.any?
     ActionCable.server.broadcast(
-      "question_#{@question.id}_answers",
-      answer: @answer,
-      question_author: @answer.question.user.id,
-      attachments: @answer.attachments.map { |a| { id: a.id, file_name: a.file.identifier, file_url: a.file.url } }
+        "question_#{@question.id}_answers",
+        answer: @answer,
+        question_author: @answer.question.user.id,
+        attachments: @answer.attachments.map { |a| {id: a.id, file_name: a.file.identifier, file_url: a.file.url} }
     )
   end
 end

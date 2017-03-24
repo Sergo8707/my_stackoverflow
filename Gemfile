@@ -28,7 +28,7 @@ gem 'turbolinks', '~> 5'
 gem 'twitter-bootstrap-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'simple_form'
-gem 'responders'
+gem 'responders', '~> 2.0'
 
 group :development, :test do
   gem 'byebug', platform: :mri
