@@ -18,19 +18,16 @@ RSpec.describe QuestionsController, type: :controller do
 
     context 'User is not the author' do
       let(:another_user) { create(:user) }
-      let(:another_question) { create(:question, user: another_user) }
+      let!(:another_question) { create(:question, user: another_user) }
       render_views
 
       it 'delete try question' do
-        another_question
         expect { delete :destroy, params: { id: another_question } }.to_not change(Question, :count)
       end
 
-      it 're-renders question view' do
+      it 'redirect to question show' do
         delete :destroy, params: { id: another_question }
-        expect(response).to render_template :show
-        expect(response.body).to match another_question.body
-        expect(response.body).to match another_question.title
+        expect(response).to redirect_to question_path(another_question)
       end
     end
   end
