@@ -35,7 +35,7 @@ feature 'Delete files of question', '
         create(:attachment, attachable: another_question)
         visit question_path(another_question)
         expect(page).to have_link 'spec_helper.rb', href: '/uploads/attachment/file/2/spec_helper.rb'
-        expect(page).to_not have_link 'Delete file'
+        expect(page).to_not have_link 'Удалить файл'
       end
     end
   end
@@ -43,6 +43,6 @@ feature 'Delete files of question', '
   scenario 'Non-authenticated user try delete file', js: true do
     visit question_path(question)
     expect(page).to have_link @expected_file_name, href: @expected_href
-    expect(page).to_not have_link 'Delete file'
+    expect(page).to_not have_link 'Удалить файл'
   end
 end

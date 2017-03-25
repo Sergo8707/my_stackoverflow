@@ -3,7 +3,7 @@ require 'rails_helper'
 
 RSpec.describe CommentsController, type: :controller do
   let(:question) { create(:question) }
-  let!(:comment_params) { {comment: attributes_for(:comment), question_id: question, format: :json} }
+  let!(:comment_params) { { comment: attributes_for(:comment), question_id: question, format: :json } }
   let(:data) { JSON.parse(response.body) }
 
   describe 'POST #create' do
@@ -36,7 +36,7 @@ RSpec.describe CommentsController, type: :controller do
       end
 
       context 'with invalid attributes' do
-        let!(:invalid_comment_params) { {question_id: question, comment: {content: 'text'}, format: :js} }
+        let!(:invalid_comment_params) { { question_id: question, comment: { content: 'text' }, format: :js } }
         it 'does not save the comment' do
           expect do
             post :create, params: invalid_comment_params

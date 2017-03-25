@@ -14,7 +14,6 @@ feature 'Delete answer', '
     visit question_path(question)
     click_on 'Удалить ответ'
     expect(page).to_not have_content answer.body
-    expect(page).to have_content 'Ваш ответ был успешно удален.'
   end
 
   scenario 'Authenticated user tries to remove another author answer' do

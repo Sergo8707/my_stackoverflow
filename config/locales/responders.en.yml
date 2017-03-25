@@ -1,0 +1,21 @@
+ru:
+  flash:
+    actions:
+      create:
+        notice: '%{resource_name} was successfully created.'
+        alert: '%{resource_name} could not be created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+        alert: '%{resource_name} could not be updated.'
+      destroy:
+        notice: '%{resource_name} was successfully destroyed.'
+        alert: '%{resource_name} could not be destroyed.'
+    questions:
+      create:
+        notice: 'Ваш вопрос успешно создан.'
+      destroy:
+        notice: 'Ваш вопрос был успешно удален.'
+    answers:
+      destroy:
+        notice: 'Ваш ответ был успешно удален.'
+        alert: 'Вы не можете удалить ответ!'
