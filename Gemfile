@@ -31,6 +31,7 @@ gem 'twitter-bootstrap-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -46,12 +47,13 @@ group :test do
   gem 'rails-controller-testing'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
+  gem 'capybara-email'
 end
 
 group :development do
   gem 'listen', '~> 3.0.5'
   gem 'web-console', '>= 3.3.0'
-
+  gem 'letter_opener'
   gem 'pry-rails'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
