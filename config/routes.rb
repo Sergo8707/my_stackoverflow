@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {omniauth_callbacks: 'omniauth_callbacks'}
   root to: 'questions#index'
 
+  patch 'users/confirmation_email', to: 'users#confirmation_email', as: 'user_confirmation_email'
+
   concern :votable do
     resources :votes, only: [:create, :destroy]
   end
