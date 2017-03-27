@@ -8,11 +8,17 @@ feature 'User sign up', '
   scenario 'Guest user try to sign up' do
     visit root_path
     click_link 'Регистрация'
+    registration_email = 'reguser@test.com'
+    fill_in 'Email', with: registration_email
     fill_in 'Email', with: 'reguser@test.com'
     fill_in 'Пароль', with: '123456'
     fill_in 'Подтвердите пароль', with: '123456'
     click_button 'Зарегистрироваться'
-    expect(page).to have_content 'Добро пожаловать! Вы успешно зарегистрировались.'
-    expect(current_path).to eq root_path
+    expect(page).to have_content '×В течение нескольких минут вы получите письмо с инструкциями по подтверждению вашей учётной записи.'
+
+    open_email(registration_email)
+    current_email.click_link 'Confirm my account'
+    expect(page).to have_content '×Ваша учётная запись успешно подтверждена.'
+    expect(current_path).to eq new_user_session_path
   end
 end
