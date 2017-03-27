@@ -1,5 +1,5 @@
+# frozen_string_literal: true
 class VotePresenter
-
   def as(presence)
     send("present_as_#{presence}")
   end
@@ -12,21 +12,21 @@ class VotePresenter
 
   def present_as_create
     @vote.slice(:id, :votable_id)
-        .merge(
-            votable_type: @vote.votable_type.underscore,
-            votable_rating: @vote.votable.rating,
-            action: 'create',
-            message: 'Your vote has been accepted!'
-        )
+         .merge(
+           votable_type: @vote.votable_type.underscore,
+           votable_rating: @vote.votable.rating,
+           action: 'create',
+           message: 'Your vote has been accepted!'
+         )
   end
 
   def present_as_destroy
     @vote.slice(:id, :votable_id)
-        .merge(
-            votable_type: @vote.votable_type.underscore,
-            votable_rating: @vote.votable.rating,
-            action: 'delete',
-            message: 'Your vote removed!'
-        )
+         .merge(
+           votable_type: @vote.votable_type.underscore,
+           votable_rating: @vote.votable.rating,
+           action: 'delete',
+           message: 'Your vote removed!'
+         )
   end
 end

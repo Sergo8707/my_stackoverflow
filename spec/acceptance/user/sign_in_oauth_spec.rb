@@ -1,10 +1,11 @@
+# frozen_string_literal: true
 require_relative '../acceptance_helper'
 
-feature 'Sign in OAuth', %q{
+feature 'Sign in OAuth', '
   In order to be able to sign in through account social network
   As non-authenticated user
   I want to be able to sign in through my social network account
-} do
+' do
   context 'provider received email' do
     scenario 'sign in through facebook' do
       received_email = 'email@example.test'

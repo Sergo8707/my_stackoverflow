@@ -42,7 +42,7 @@ RSpec.describe User do
 
     context 'user has not authorization' do
       context 'provider also returns email' do
-        let(:auth) { OmniAuth::AuthHash.new(provider: 'facebook', uid: '123456', info: {email: user.email}) }
+        let(:auth) { OmniAuth::AuthHash.new(provider: 'facebook', uid: '123456', info: { email: user.email }) }
 
         context 'user already exists' do
           it 'does not create new user' do
@@ -66,7 +66,7 @@ RSpec.describe User do
         end
 
         context 'user does not exist' do
-          let(:auth) { OmniAuth::AuthHash.new(provider: 'facebook', uid: '123456', info: {email: 'new@test.com'}) }
+          let(:auth) { OmniAuth::AuthHash.new(provider: 'facebook', uid: '123456', info: { email: 'new@test.com' }) }
 
           it 'creates new user' do
             expect { User.find_for_oauth(auth) }.to change(User, :count).by(1)

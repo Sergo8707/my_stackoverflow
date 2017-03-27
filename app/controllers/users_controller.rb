@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class UsersController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
 

@@ -1,11 +1,10 @@
+# frozen_string_literal: true
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   before_action :sign_in_provider
 
-  def facebook
-  end
+  def facebook; end
 
-  def twitter
-  end
+  def twitter; end
 
   private
 
