@@ -5,12 +5,11 @@ feature 'User sign up', '
   I want to be able to register in the system
 ' do
 
+  given!(:registration_email) { 'reguser@test.com' }
   scenario 'Guest user try to sign up' do
     visit root_path
     click_link 'Регистрация'
-    registration_email = 'reguser@test.com'
     fill_in 'Email', with: registration_email
-    fill_in 'Email', with: 'reguser@test.com'
     fill_in 'Пароль', with: '123456'
     fill_in 'Подтвердите пароль', with: '123456'
     click_button 'Зарегистрироваться'
