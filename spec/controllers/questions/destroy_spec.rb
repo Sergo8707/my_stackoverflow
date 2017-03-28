@@ -24,11 +24,6 @@ RSpec.describe QuestionsController, type: :controller do
       it 'delete try question' do
         expect { delete :destroy, params: { id: another_question } }.to_not change(Question, :count)
       end
-
-      it 'redirect to question show' do
-        delete :destroy, params: { id: another_question }
-        expect(response).to redirect_to question_path(another_question)
-      end
     end
   end
 

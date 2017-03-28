@@ -1,6 +1,7 @@
 .container
   .row
     .col-lg-10.text-right
-      = link_to t('layouts.header.new_question'), new_question_path, class: 'btn btn-primary'
+      - if can?(:create, Question)
+        = link_to t('layouts.header.new_question'), new_question_path, class: 'btn btn-primary'
 
 
