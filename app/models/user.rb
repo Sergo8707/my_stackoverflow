@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class User < ApplicationRecord
   TEMPORARY_EMAIL_PREFIX = 'temporary@email'
-  TEMPORARY_EMAIL_REGEX = /\Atemporary@email/
+  TEMPORARY_EMAIL_REGEX = /\A#{TEMPORARY_EMAIL_PREFIX}/
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
