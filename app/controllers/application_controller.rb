@@ -17,6 +17,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  check_authorization unless :devise_controller?
+
   private
 
   def gon_user
