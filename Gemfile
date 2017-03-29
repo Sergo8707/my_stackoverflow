@@ -15,6 +15,7 @@ gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'rails', '~> 5.0.1'
 
+gem 'cancancan'
 gem 'carrierwave'
 gem 'cocoon'
 gem 'gon'
@@ -32,7 +33,6 @@ gem 'sprockets', '3.6.3'
 gem 'turbolinks', '~> 5'
 gem 'twitter-bootstrap-rails'
 gem 'uglifier', '>= 1.3.0'
-gem 'cancancan'
 
 group :development, :test do
   gem 'byebug', platform: :mri
