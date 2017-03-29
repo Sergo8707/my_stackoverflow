@@ -29,7 +29,8 @@ RSpec.describe AttachmentsController, type: :controller do
 
         it 'render destroy template' do
           delete :destroy, params: { id: attachment }, format: :js
-          expect(response).to render_template :destroy
+          expect(response).to have_http_status(:forbidden)
+          expect(response).to render_template 'errors/error_forbidden'
         end
       end
     end
