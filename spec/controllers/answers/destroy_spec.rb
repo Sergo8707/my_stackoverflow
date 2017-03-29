@@ -30,8 +30,8 @@ RSpec.describe AnswersController, type: :controller do
 
         it 'render destroy template' do
           delete :destroy, params: { id: another_answer }, format: :js
-          expect(response).to render_template :destroy
-          expect(response.body).to match 'Вы не можете удалить ответ!'
+          expect(response).to have_http_status(:forbidden)
+          expect(response).to render_template 'errors/error_forbidden'
         end
       end
     end

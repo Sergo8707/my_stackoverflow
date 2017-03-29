@@ -6,11 +6,9 @@ class AnswersController < ApplicationController
 
   after_action :publish_answer, only: [:create]
 
-  respond_to :js
+  authorize_resource
 
-  def new
-    respond_with(@answer = Answer.new)
-  end
+  respond_to :js
 
   def create
     respond_with(@answer = @question.answers.create(answer_params.merge(user_id: current_user.id)))
@@ -22,7 +20,7 @@ class AnswersController < ApplicationController
   end
 
   def update
-    @answer.update(answer_params) if current_user.author?(@answer)
+    @answer.update(answer_params)
     respond_with(@answer)
   end
 
