@@ -48,7 +48,6 @@ feature 'Create question', '
   end
   scenario 'Non-authenticated user ties to create question' do
     visit questions_path
-    click_on 'Новый вопрос'
-    expect(page).to have_content 'Вам необходимо войти в систему или зарегистрироваться.'
+    expect(page).to_not have_content 'Ask question'
   end
 end

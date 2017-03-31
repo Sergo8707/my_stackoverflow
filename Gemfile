@@ -15,6 +15,7 @@ gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'rails', '~> 5.0.1'
 
+gem 'cancancan'
 gem 'carrierwave'
 gem 'cocoon'
 gem 'gon'

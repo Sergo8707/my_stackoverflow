@@ -3,13 +3,14 @@
     .answer-best
       - if answer.best?
         b = t('answers.answer.best')
-      - elsif user_signed_in? && current_user.author?(answer.question)
+      - elsif can?(:mark_best, answer)
         = link_to t('answers.answer.best_up'), mark_best_answer_path(answer), method: :patch, remote: true
       = render 'votes/vote', entity: answer
       = answer.body
       = render 'attachments/attachments', entity: answer
-      - if user_signed_in? && current_user.author?(answer)
+      - if can?(:update, answer)
         = render 'answers/form_edit', answer: answer
+      - if can?(:destroy, answer)
         = link_to t('answers.answer.destroy_answer'), answer, method: :delete, data: { confirm: 'The answer will be deleted. You are sure?' }, remote: true
       div class=["comments", "comments-answer-#{answer.id}"]
         = render 'comments/show', commentable: answer
