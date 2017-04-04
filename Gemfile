@@ -18,6 +18,7 @@ gem 'rails', '~> 5.0.1'
 gem 'cancancan'
 gem 'carrierwave'
 gem 'cocoon'
+gem 'doorkeeper'
 gem 'gon'
 gem 'omniauth'
 gem 'omniauth-facebook'
@@ -33,7 +34,6 @@ gem 'sprockets', '3.6.3'
 gem 'turbolinks', '~> 5'
 gem 'twitter-bootstrap-rails'
 gem 'uglifier', '>= 1.3.0'
-gem 'doorkeeper'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -46,11 +46,11 @@ group :test do
   gem 'capybara-email'
   gem 'capybara-webkit'
   gem 'database_cleaner'
+  gem 'json_spec'
   gem 'launchy'
   gem 'rails-controller-testing'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
-  gem 'json_spec'
 end
 
 group :development do
