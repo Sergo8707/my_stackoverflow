@@ -34,6 +34,9 @@ gem 'sprockets', '3.6.3'
 gem 'turbolinks', '~> 5'
 gem 'twitter-bootstrap-rails'
 gem 'uglifier', '>= 1.3.0'
+gem 'active_model_serializers'
+gem 'oj'
+gem 'oj_mimic_json'
 
 group :development, :test do
   gem 'byebug', platform: :mri
