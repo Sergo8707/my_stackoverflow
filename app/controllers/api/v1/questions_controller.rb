@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Api::V1::QuestionsController < Api::V1::BaseController
   before_action :set_question, only: [:show]
 
