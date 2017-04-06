@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe 'Questions API' do
@@ -73,25 +74,25 @@ RSpec.describe 'Questions API' do
 
       context 'attachments' do
         it 'included in question object' do
-          expect(response.body).to have_json_size(2).at_path("question/attachments")
+          expect(response.body).to have_json_size(2).at_path('question/attachments')
         end
 
-        it "contains id" do
-          expect(response.body).to be_json_eql(attachment.file.url.to_json).at_path("question/attachments/0/url")
+        it 'contains id' do
+          expect(response.body).to be_json_eql(attachment.file.url.to_json).at_path('question/attachments/0/url')
         end
 
-        it "contains name" do
-          expect(response.body).to be_json_eql(attachment.file.url.to_json).at_path("question/attachments/0/url")
+        it 'contains name' do
+          expect(response.body).to be_json_eql(attachment.file.url.to_json).at_path('question/attachments/0/url')
         end
 
-        it "contains url" do
-          expect(response.body).to be_json_eql(attachment.file.url.to_json).at_path("question/attachments/0/url")
+        it 'contains url' do
+          expect(response.body).to be_json_eql(attachment.file.url.to_json).at_path('question/attachments/0/url')
         end
       end
 
       context 'comments' do
         it 'included in question object' do
-          expect(response.body).to have_json_size(2).at_path("question/comments")
+          expect(response.body).to have_json_size(2).at_path('question/comments')
         end
 
         %w(id content created_at updated_at).each do |attr|
