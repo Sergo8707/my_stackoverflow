@@ -12,6 +12,7 @@ RSpec.describe 'Questions API' do
       let!(:comment) { comments.last }
       let!(:attachments) { create_list(:attachment, 2, attachable: question) }
       let!(:attachment) { attachments.last }
+      let!(:parent_path) { 'question' }
 
       before { get "/api/v1/questions/#{question.id}", params: { format: :json, access_token: access_token.token } }
 
@@ -25,23 +26,7 @@ RSpec.describe 'Questions API' do
         end
       end
 
-      context 'attachments' do
-        it 'included in question object' do
-          expect(response.body).to have_json_size(2).at_path('question/attachments')
-        end
-
-        it 'contains id' do
-          expect(response.body).to be_json_eql(attachment.file.url.to_json).at_path('question/attachments/0/url')
-        end
-
-        it 'contains name' do
-          expect(response.body).to be_json_eql(attachment.file.url.to_json).at_path('question/attachments/0/url')
-        end
-
-        it 'contains url' do
-          expect(response.body).to be_json_eql(attachment.file.url.to_json).at_path('question/attachments/0/url')
-        end
-      end
+      it_behaves_like 'API Attachable'
 
       context 'comments' do
         it 'included in question object' do
