@@ -31,8 +31,8 @@ RSpec.describe 'Answers API' do
         end
       end
     end
-  end
-  def do_request(options = {})
-    post "/api/v1/questions/#{question.id}/answers", params: { format: :json }.merge(options)
+    def do_request(options = {})
+      post "/api/v1/questions/#{question.id}/answers", params: { format: :json }.merge(options)
+    end
   end
 end
