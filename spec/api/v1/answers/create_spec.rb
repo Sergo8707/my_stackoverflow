@@ -6,17 +6,7 @@ RSpec.describe 'Answers API' do
   describe 'POST #create' do
     let(:question) { create(:question) }
 
-    context 'unauthorized' do
-      it 'returns 401 status if there is no access_token' do
-        post "/api/v1/questions/#{question.id}/answers", params: { answer: attributes_for(:answer), format: :json }
-        expect(response.status).to eq 401
-      end
-
-      it 'returns 401 status if access_token is invalid' do
-        post "/api/v1/questions/#{question.id}/answers", params: { answer: attributes_for(:answer), format: :json, access_token: 'invalid_token' }
-        expect(response.status).to eq 401
-      end
-    end
+    it_behaves_like 'API Authenticable'
 
     context 'authorized' do
       context 'with valid attributes' do
@@ -41,5 +31,8 @@ RSpec.describe 'Answers API' do
         end
       end
     end
+  end
+  def do_request(options = {})
+    post "/api/v1/questions/#{question.id}/answers", params: { format: :json }.merge(options)
   end
 end

@@ -3,6 +3,8 @@ require 'rails_helper'
 
 RSpec.describe 'Questions API' do
   let(:access_token) { create(:access_token) }
+  it_behaves_like 'API Authenticable'
+
   describe 'POST #create' do
     context 'unauthorized' do
       it 'returns 401 status if there is no access_token' do
@@ -39,5 +41,8 @@ RSpec.describe 'Questions API' do
         end
       end
     end
+  end
+  def do_request(options = {})
+    post '/api/v1/questions', params: { format: :json }.merge(options)
   end
 end
