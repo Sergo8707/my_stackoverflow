@@ -4,23 +4,12 @@ require 'rails_helper'
 RSpec.describe 'Questions API' do
   let(:access_token) { create(:access_token) }
   describe 'GET /index' do
-    context 'unauthorized' do
-      it 'returns 401 status if ther is no access_token' do
-        get '/api/v1/questions', params: { format: :json }
-        expect(response.status).to eq 401
-      end
-
-      it 'returns 401 status if ther is access_token is invalid' do
-        get '/api/v1/questions', params: { format: :json, access_token: 'invalid_token' }
-        expect(response.status).to eq 401
-      end
-    end
-
+    it_behaves_like 'API Authenticable'
     context 'authorized' do
       let!(:questions) { create_list(:question, 2) }
       let!(:question) { questions.first }
 
-      before { get '/api/v1/questions', params: { format: :json, access_token: access_token.token } }
+      before { get '/api/v1/questions', params: {format: :json, access_token: access_token.token} }
 
       it 'returns 200 status' do
         expect(response).to be_success
@@ -36,5 +25,8 @@ RSpec.describe 'Questions API' do
         end
       end
     end
+  end
+  def do_request(options = {})
+    get '/api/v1/questions', params: { format: :json }.merge(options)
   end
 end

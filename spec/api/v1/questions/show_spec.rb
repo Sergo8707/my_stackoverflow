@@ -5,18 +5,7 @@ RSpec.describe 'Questions API' do
   let(:access_token) { create(:access_token) }
   describe 'GET #show' do
     let!(:question) { create(:question) }
-
-    context 'unauthorized' do
-      it 'returns 401 status if ther is no access_token' do
-        get "/api/v1/questions/#{question.id}", params: { format: :json }
-        expect(response.status).to eq 401
-      end
-
-      it 'returns 401 status if ther is access_token is invalid' do
-        get "/api/v1/questions/#{question.id}", params: { format: :json, access_token: 'invalid_token' }
-        expect(response.status).to eq 401
-      end
-    end
+    it_behaves_like 'API Authenticable'
 
     context 'authorized' do
       let!(:comments) { create_list(:comment, 2, commentable: question) }
@@ -66,5 +55,8 @@ RSpec.describe 'Questions API' do
         end
       end
     end
+  end
+  def do_request(options = {})
+    get "/api/v1/questions/#{question.id}", params: { format: :json }.merge(options)
   end
 end
