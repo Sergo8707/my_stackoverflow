@@ -2,33 +2,36 @@
 require 'rails_helper'
 
 RSpec.describe 'Profile API' do
+  let(:access_token) { create(:access_token) }
   describe 'GET /me' do
     it_behaves_like 'API Authenticable'
 
     context 'authorized' do
-      let(:me) { create(:user) }
-      let!(:access_token) { create(:access_token, resource_owner_id: me.id) }
+      context 'with valid attributes' do
+        it 'returns 201 status code' do
+          post '/api/v1/questions', params: { question: attributes_for(:question), format: :json, access_token: access_token.token }
+          expect(response).to be_created
+        end
 
-      before { get '/api/v1/profiles/me', params: { format: :json, access_token: access_token.token } }
-
-      it 'returns 200 status' do
-        expect(response).to be_success
-      end
-
-      %w(id email created_at updated_at admin).each do |attr|
-        it "contains #{attr}" do
-          expect(response.body).to be_json_eql(me.send(attr.to_sym).to_json).at_path(attr)
+        it 'saves the new question in the database' do
+          expect { post '/api/v1/questions', params: { question: attributes_for(:question), format: :json, access_token: access_token.token } }.to change(Question, :count).by(1)
         end
       end
 
-      %w(password encrypted_password).each do |attr|
-        it "does not contain #{attr}" do
-          expect(response.body).to_not have_json_path(attr)
+      context 'with invalid attributes' do
+        it 'returns 422 status code' do
+          post '/api/v1/questions', params: { question: attributes_for(:invalid_question), format: :json, access_token: access_token.token }
+          expect(response.status).to eq 422
+        end
+
+        it 'does not save the question' do
+          expect { post '/api/v1/questions', params: { question: attributes_for(:invalid_question), format: :json, access_token: access_token.token } }.not_to change(Question, :count)
         end
       end
     end
+
     def do_request(options = {})
-      get '/api/v1/profiles/me', params: { format: :json }.merge(options)
+      post '/api/v1/questions', params: { format: :json }.merge(options)
     end
   end
 end

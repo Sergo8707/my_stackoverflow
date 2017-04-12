@@ -27,21 +27,10 @@ RSpec.describe 'Questions API' do
       end
 
       it_behaves_like 'API Attachable'
-
-      context 'comments' do
-        it 'included in question object' do
-          expect(response.body).to have_json_size(2).at_path('question/comments')
-        end
-
-        %w(id content created_at updated_at).each do |attr|
-          it "contains #{attr}" do
-            expect(response.body).to be_json_eql(comment.send(attr.to_sym).to_json).at_path("question/comments/0/#{attr}")
-          end
-        end
-      end
+      it_behaves_like 'API Commentable'
     end
-  end
-  def do_request(options = {})
-    get "/api/v1/questions/#{question.id}", params: { format: :json }.merge(options)
+    def do_request(options = {})
+      get "/api/v1/questions/#{question.id}", params: { format: :json }.merge(options)
+    end
   end
 end
