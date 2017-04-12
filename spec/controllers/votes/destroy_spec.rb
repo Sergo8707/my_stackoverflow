@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe VotesController, type: :controller do
@@ -16,15 +17,8 @@ RSpec.describe VotesController, type: :controller do
         it 'render success' do
           delete :destroy, params: { id: vote.id, format: :json }
           question.reload
-          data = JSON.parse(response.body)
           expect(response).to have_http_status :success
-
-          expect(data['id']).to eq vote.id
-          expect(data['votable_rating']).to eq question.rating
-          expect(data['votable_type']).to eq question.class.name.underscore
-          expect(data['votable_id']).to eq question.id
-          expect(data['action']).to eq 'delete'
-          expect(data['message']).to eq 'Your vote removed!'
+          expect(response).to match_response_schema('vote_serialized')
         end
       end
 
@@ -37,9 +31,7 @@ RSpec.describe VotesController, type: :controller do
 
         it 'render error' do
           delete :destroy, params: { id: vote.id, format: :json }
-          data = JSON.parse(response.body)
           expect(response).to have_http_status :forbidden
-          expect(data['error']).to eq 'resource_forbidden'
         end
       end
     end
