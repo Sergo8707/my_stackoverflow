@@ -15,7 +15,7 @@ RSpec.describe 'Answers API' do
       let!(:attachment) { attachments.last }
       let!(:parent_path) { 'answer' }
 
-      before { get "/api/v1/answers/#{answer.id}", params: {format: :json, access_token: access_token.token} }
+      before { get "/api/v1/answers/#{answer.id}", params: { format: :json, access_token: access_token.token } }
 
       it 'returns 200 status' do
         expect(response).to be_success

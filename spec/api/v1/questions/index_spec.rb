@@ -9,7 +9,7 @@ RSpec.describe 'Questions API' do
       let!(:questions) { create_list(:question, 2) }
       let!(:question) { questions.first }
 
-      before { get '/api/v1/questions', params: {format: :json, access_token: access_token.token} }
+      before { get '/api/v1/questions', params: { format: :json, access_token: access_token.token } }
 
       it 'returns 200 status' do
         expect(response).to be_success

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 shared_examples 'API Commentable' do
   context 'comments' do
     it 'included in commentable object' do

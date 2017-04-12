@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 shared_examples_for 'Create Vote' do
   let(:votable_params) { Hash["#{votable.class.name.underscore}_id", votable.id] }
   let!(:vote_params) { votable_params.merge(rating: 'up', format: :json) }
