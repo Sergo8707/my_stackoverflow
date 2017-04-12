@@ -29,7 +29,7 @@ RSpec.describe 'Questions API' do
       end
     end
     def do_request(options = {})
-      post '/api/v1/questions', params: { format: :json }.merge(options)
+      post '/api/v1/questions', params: { format: :json }.merge!(options)
     end
   end
 end

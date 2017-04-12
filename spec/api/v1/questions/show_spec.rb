@@ -30,7 +30,7 @@ RSpec.describe 'Questions API' do
       it_behaves_like 'API Commentable'
     end
     def do_request(options = {})
-      get "/api/v1/questions/#{question.id}", params: { format: :json }.merge(options)
+      get "/api/v1/questions/#{question.id}", params: { format: :json }.merge!(options)
     end
   end
 end
