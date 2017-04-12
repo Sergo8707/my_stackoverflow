@@ -3,10 +3,8 @@ require 'rails_helper'
 
 RSpec.describe 'Questions API' do
   let(:access_token) { create(:access_token) }
-  it_behaves_like 'API Authenticable'
-
   describe 'POST #create' do
-
+    it_behaves_like 'API Authenticable'
     context 'authorized' do
       context 'with valid attributes' do
         it 'returns 201 status code' do
