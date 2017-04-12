@@ -1,5 +1,5 @@
+# frozen_string_literal: true
 shared_examples_for 'Create Comment' do
-
   let(:commentable_params) { Hash["#{commentable.class.name.underscore}_id", commentable.id] }
   let!(:comment_params) { commentable_params.merge(comment: attributes_for(:comment), format: :json) }
 
