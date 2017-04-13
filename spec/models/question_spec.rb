@@ -16,4 +16,17 @@ RSpec.describe Question do
   context 'association' do
     it { should have_many(:answers).dependent(:destroy) }
   end
+
+  describe '#lastday' do
+    let!(:questions) { create_list(:question, 2) }
+    let!(:old_questions) { create_list(:question, 2, created_at: 2.day.ago) }
+
+    it 'returns questions lastday' do
+      expect(Question.lastday).to eq questions
+    end
+
+    it 'not returns old questions' do
+      expect(Question.lastday).to_not eq old_questions
+    end
+  end
 end
