@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module SubscriptionsHelper
   def user_can_unsubscribe?(entity)
     user_signed_in? && user_subscription(entity).present? && can?(:destroy, user_subscription(entity))
