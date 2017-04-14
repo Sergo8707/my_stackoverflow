@@ -1,12 +1,13 @@
+# frozen_string_literal: true
 require_relative '../acceptance_helper'
 
-feature 'Subscribe question', %q{
+feature 'Subscribe question', '
   In order to be able receive notifications of new answers
   As an authenticated user
   I want to be able to subscribe to a question
-} do
-  given(:user) {create(:user)}
-  given!(:question) {create(:question)}
+' do
+  given(:user) { create(:user) }
+  given!(:question) { create(:question) }
 
   describe 'Authenticated user' do
     context 'Not author question' do

@@ -1,8 +1,7 @@
-class DailyMailer <ApplicationMailer
+# frozen_string_literal: true
+class DailyMailer < ApplicationMailer
   def digest(user)
     @questions = Question.lastday
-    if @questions.any?
-      mail(to: user.email, subject: 'Daily questions digest')
-    end
+    mail(to: user.email, subject: 'Daily questions digest') if @questions.any?
   end
 end

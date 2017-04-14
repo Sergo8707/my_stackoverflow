@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class SubscriptionQuestionMailer < ApplicationMailer
   def notify(user, answer)
     @answer = answer
