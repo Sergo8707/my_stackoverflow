@@ -6,18 +6,18 @@ RSpec.describe Answer do
   it_behaves_like 'commentable'
 
   context 'validation' do
-    it { should validate_presence_of :body }
-    it { should validate_presence_of :question }
-    it { should validate_length_of(:body).is_at_least(10) }
+    it {should validate_presence_of :body}
+    it {should validate_presence_of :question}
+    it {should validate_length_of(:body).is_at_least(10)}
   end
 
   context 'association' do
-    it { should belong_to(:question) }
+    it {should belong_to(:question)}
   end
 
   describe 'best answer' do
-    let(:question) { create(:question) }
-    let(:answer) { create(:answer, question: question) }
+    let(:question) {create(:question)}
+    let(:answer) {create(:answer, question: question)}
 
     it '#mark_best' do
       answer.mark_best
@@ -41,13 +41,28 @@ RSpec.describe Answer do
     end
   end
   describe '#first_best' do
-    let(:question) { create(:question) }
+    let(:question) {create(:question)}
 
     it 'first in the list' do
       answers = create_list(:answer, 5, question: question)
       third_answer = answers.third
       third_answer.update(best: true)
       expect(Answer.first_best.first).to eq third_answer
+    end
+  end
+  describe '#create' do
+    let(:answer) {build(:answer)}
+
+    context 'notify' do
+      it 'should notify after creating ' do
+        expect(answer).to receive(:notify)
+        answer.run_callbacks(:create)
+      end
+
+      it 'should notify subscribers' do
+        expect(SubscriptionQuestionJob).to receive(:perform_later).with(answer)
+        answer.save
+      end
     end
   end
 end
