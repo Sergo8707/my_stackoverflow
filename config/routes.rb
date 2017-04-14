@@ -26,6 +26,7 @@ Rails.application.routes.draw do
         patch :mark_best
       end
     end
+    resources :subscriptions, only: [:create, :destroy], shallow: true
   end
 
   namespace :api do
