@@ -9,7 +9,7 @@ class Question < ApplicationRecord
 
   validates :title, :body, presence: true, length: { minimum: 10 }
 
-  scope :lastday, -> { where(created_at: 1.day.ago..Time.now) }
+  scope :lastday, -> { where(created_at: 1.day.ago..Time.current) }
 
   after_create :subscribe
 
