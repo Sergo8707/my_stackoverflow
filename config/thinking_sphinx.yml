@@ -12,4 +12,4 @@ development:
   mysql41: 9001
 test:
   <<: *default
-  mysql41: 6854
+  mysql41: 15276
