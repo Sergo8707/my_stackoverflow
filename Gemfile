@@ -41,6 +41,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'whenever'
 gem 'mysql2'
 gem 'thinking-sphinx'
+gem 'will_paginate'
 
 group :development, :test do
   gem 'byebug', platform: :mri
