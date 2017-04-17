@@ -1,10 +1,11 @@
+# frozen_string_literal: true
 require_relative '../acceptance_helper'
 
-feature 'Search', %q{
+feature 'Search', '
   In order to find an interesting question, answer, comment, user
   As a user
   I want to be able to search
-} do
+' do
   given!(:user) { create(:user) }
   given!(:question) { create(:question) }
   given!(:answer) { create(:answer) }

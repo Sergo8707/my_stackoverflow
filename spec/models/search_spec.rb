@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe Search do
   describe '.do' do
-    let(:params) { { q: 'search text', scopes: %w(question answer comment user)} }
+    let(:params) { { q: 'search text', scopes: %w(question answer comment user) } }
 
     it 'escapes query' do
       expect(ThinkingSphinx::Query).to receive(:escape).with(params[:q])

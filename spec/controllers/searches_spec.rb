@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe SearchesController, type: :controller do
-  describe "GET #show" do
-    it "returns http success" do
+  describe 'GET #show' do
+    it 'returns http success' do
       get :show
       expect(response).to have_http_status(:success)
     end
@@ -14,7 +15,7 @@ RSpec.describe SearchesController, type: :controller do
         expect(response).to render_template :show
       end
 
-      it "returns http success" do
+      it 'returns http success' do
         expect(response).to have_http_status(:success)
       end
     end
