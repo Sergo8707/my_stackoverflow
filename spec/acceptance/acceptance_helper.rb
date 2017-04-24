@@ -7,7 +7,6 @@ RSpec.configure do |config|
   Capybara.server = :puma
 
   config.include AcceptanceHelper, type: :feature
-
   config.include SphinxHelpers, type: :feature
 
   config.use_transactional_fixtures = false
