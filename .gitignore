@@ -23,4 +23,6 @@ config/database.yml
 coverage
 config/*.sphinx.conf
 db/sphinx
+.ruby-gemset
+.ruby-version
 

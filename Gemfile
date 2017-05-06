@@ -42,6 +42,9 @@ gem 'twitter-bootstrap-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'whenever'
 gem 'will_paginate'
+gem 'dotenv-rails'
+gem 'dotenv-deployment', require: 'dotenv/deployment'
+gem 'therubyracer'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -69,6 +72,11 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
+  gem 'capistrano', require: false
+  gem 'capistrano-bundle', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-rvm', require: false
+  gem 'capistrano-sidekiq', require: false
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
