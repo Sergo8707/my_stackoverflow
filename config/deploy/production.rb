@@ -46,9 +46,10 @@ set :stage, :production
 # Global options
 # --------------
 set :ssh_options, {
-    keys: %w(/home/Maildir/.ssh/id_rsa),
+    keys: %w(/home/sergo/.ssh/id_rsa),
     forward_agent: true,
-    auth_methods: %w(publickey, password)
+    auth_methods: %w(publickey, password),
+    port: 4321
 }
 #
 # The server-based syntax can be used to override options:

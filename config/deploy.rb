@@ -1,5 +1,6 @@
 # config valid only for current version of Capistrano
 lock "3.8.1"
+set :rvm_ruby_version, '2.3.0'
 
 set :application, "my_stackoverflow"
 set :repo_url, "git@github.com:Sergo8707/my_stackoverflow.git"
