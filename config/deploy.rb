@@ -10,13 +10,10 @@ set :deploy_to, "/home/deployer/my_stackoverflow"
 set :deploy_user, 'deployer'
 
 set :format_options, command_output: true, log_file: "log/capistrano.log", color: :auto, truncate: :auto
-
 # Default value for :linked_files is []
 append :linked_files, ".env", "config/database.yml", "config/secrets.yml", "config/production.sphinx.conf", "config/sidekiq.yml"
-
 # Default value for linked_dirs is []
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "public/uploads", "vendor/bundle", "db/sphinx/production"
-
 # Default value for default_env is {}
 set :keep_releases, 5
 
